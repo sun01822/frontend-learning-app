@@ -4,7 +4,7 @@
 
 ###  1. [Download Node js](https://nodejs.org/en/download)  on your pc
 ###  2. Clone this Git Repositore on your PC
-###  3. Open terminal fron root directory and type
+###  3. Open terminal from root directory and type
 	
     npm install
 
