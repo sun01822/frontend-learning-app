@@ -18,7 +18,7 @@ const Card = () => {
           />
           <div>
             <div className="flex items-center gap-3">
-              <p className="font-semibold">Md.Rakibuzzaman</p>
+              <p className="font-semibold text-sm">Md.Rakibuzzaman</p>
               <Rating />
               (4.4)
             </div>
@@ -31,12 +31,12 @@ const Card = () => {
       </div>
       {/* Problem */}
       <h3 className="text-sm font-semibold pt-4 text-gray-400">Problem</h3>
-      <h2 className="text-2xl font-semibold text-info">
+      <h2 className="text-xl font-semibold text-info">
         Can anyone teach me hoasting topic in Javascript.
       </h2>
       <div className="mt-4">
         <div className="flex items-center gap-4">
-          <button className="btn btn-xs gap-2 btn-secondary hover:bg-green-500 text-white rounded-full">
+          <button className="btn btn-xs gap-2 btn-success hover:bg-green-500 text-white rounded-full">
             Send Offer <AiOutlineSend />
           </button>
           <p className="flex gap-2 text-primary items-center">

@@ -33,6 +33,7 @@ const Filter = () => {
             <span className="label-text font-semibold">Programming</span>
             <input
               type="checkbox"
+              readOnly
               className="checkbox checkbox-sm checkbox-success"
             />
           </label>
@@ -40,6 +41,7 @@ const Filter = () => {
             <span className="label-text font-semibold">English</span>
             <input
               type="checkbox"
+              readOnly
               className="checkbox checkbox-sm checkbox-success"
             />
           </label>
@@ -47,6 +49,7 @@ const Filter = () => {
             <span className="label-text font-semibold">Mathematics</span>
             <input
               type="checkbox"
+              readOnly
               className="checkbox checkbox-sm checkbox-success"
             />
           </label>
@@ -54,6 +57,7 @@ const Filter = () => {
             <span className="label-text font-semibold">Chemistry</span>
             <input
               type="checkbox"
+              readOnly
               className="checkbox checkbox-sm checkbox-success"
             />
           </label>
@@ -61,6 +65,7 @@ const Filter = () => {
             <span className="label-text font-semibold">Physics</span>
             <input
               type="checkbox"
+              readOnly
               className="checkbox checkbox-sm checkbox-success"
             />
           </label>
@@ -68,6 +73,7 @@ const Filter = () => {
             <span className="label-text font-semibold">Others</span>
             <input
               type="checkbox"
+              readOnly
               className="checkbox checkbox-sm checkbox-success"
             />
           </label>

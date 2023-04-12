@@ -54,9 +54,9 @@ const Navbar = () => {
                 <span className="indicator-item badge rounded-full badge-error">
                   99+
                 </span>
-                <div className="bg-base-200 p-2 rounded-full">
+                <span className="bg-base-200 p-2 rounded-full">
                   <AiOutlineBell />
-                </div>
+                </span>
               </p>
             </Link>
             <Link href="#">
@@ -64,22 +64,22 @@ const Navbar = () => {
                 <span className="indicator-item rounded-full badge badge-error">
                   4
                 </span>
-                <div className="bg-base-200 p-2 rounded-full">
+                <span className="bg-base-200 p-2 rounded-full">
                   <AiOutlineMessage />
-                </div>
+                </span>
               </p>
             </Link>
           </div>
           {/* user */}
           <div className="flex gap-3 items-center">
             <div className="text-right">
-              <h3 className="font-bold text-black">Md.Rakibuzzaman</h3>
-              <p>৳ 10.00 BDT</p>
+              <h3 className="font-bold text-sm text-black">Md.Rakibuzzaman</h3>
+              <p className="text-sm">৳ 10.00 BDT</p>
             </div>
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="cursor-pointer">
                 <Image
-                  className="w-12 rounded-full border border-primary"
+                  className="w-10 rounded-full border border-primary"
                   src={Rakib}
                   alt="Learning APP"
                   priority
