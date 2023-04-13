@@ -1,8 +1,8 @@
-import React from "react";
 import Rakib from "../../public/images/rakib.jpg";
 import { AiOutlineStar, AiOutlineSend } from "react-icons/ai";
 import Image from "next/image";
 import Rating from "../common/Rating";
+import Link from "next/link";
 
 const Card = () => {
   const Topics = ["Programming", "Javascript", "Website"];
@@ -11,14 +11,18 @@ const Card = () => {
       {/* Header */}
       <div className="flex flex-wrap gap-2 justify-between">
         <div className="flex items-center gap-2">
-          <Image
-            src={Rakib}
-            className="w-10 h-10 rounded-full border"
-            alt="Rakib"
-          />
+          <Link href="/profile/rakib38">
+            <Image
+              src={Rakib}
+              className="w-10 h-10 rounded-full border"
+              alt="Rakib"
+            />
+          </Link>
           <div>
             <div className="flex items-center gap-3">
-              <p className="font-semibold text-sm">Md.Rakibuzzaman</p>
+              <Link href="/profile/rakib38">
+                <p className="font-semibold text-sm">Md.Rakibuzzaman</p>
+              </Link>
               <Rating />
               (4.4)
             </div>
@@ -31,14 +35,18 @@ const Card = () => {
       </div>
       {/* Problem */}
       <h3 className="text-sm font-semibold pt-4 text-gray-400">Problem</h3>
-      <h2 className="text-xl font-semibold text-info">
-        Can anyone teach me hoasting topic in Javascript.
-      </h2>
+      <Link href="/apply/1213">
+        <h2 className="text-xl font-semibold hover:text-primary">
+          Can anyone teach me hoasting topic in Javascript.
+        </h2>
+      </Link>
       <div className="mt-4">
         <div className="flex items-center gap-4">
-          <button className="btn btn-xs gap-2 btn-success hover:bg-green-500 text-white rounded-full">
-            Send Offer <AiOutlineSend />
-          </button>
+          <Link href="/apply/1213">
+            <button className="btn btn-xs gap-2 btn-sar text-white rounded-full px-3">
+              Apply Job <AiOutlineSend />
+            </button>
+          </Link>
           <p className="flex gap-2 text-primary items-center">
             <AiOutlineStar /> Interested
             <span className="font-semibold">9</span>

@@ -7,3 +7,9 @@
     @apply bg-[#f0f0f0];
   }
 }
+
+@layer components {
+  .btn-sar {
+    @apply bg-green-500 hover:bg-green-600 border-none rounded-full;
+  }
+}

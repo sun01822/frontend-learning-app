@@ -10,7 +10,7 @@ export default function Home() {
 
       <div className="w-[400px] text-center mx-auto mt-10">
         <Link href="/feed">
-          <button className="btn">Start Now</button>
+          <button className="btn">Find Job</button>
         </Link>
       </div>
     </>

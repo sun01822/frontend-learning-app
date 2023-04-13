@@ -2,7 +2,7 @@ import React from "react";
 
 const Filter = () => {
   return (
-    <div className="bg-white rounded-lg p-4 sticky top-2">
+    <div className="bg-white rounded-lg p-4 sticky top-2 overflow-y-auto">
       <h3 className="font-semibold text-xl">Filters</h3>
       <h3 className="font-semibold text-sm uppercase text-gray-400 mt-6">
         Price Range (tk)
@@ -20,7 +20,7 @@ const Filter = () => {
             placeholder="To"
           />
         </div>
-        <button className="btn btn-sm bg-primary px-4 text-white rounded-md">
+        <button className="btn btn-sm px-4 text-white rounded-md">
           Filter
         </button>
       </div>
@@ -78,7 +78,7 @@ const Filter = () => {
             />
           </label>
 
-          <button className="mt-2 btn btn-sm bg-primary px-4 text-white rounded-md">
+          <button className="mt-2 btn btn-sm px-4 text-white rounded-md">
             Filter
           </button>
         </div>

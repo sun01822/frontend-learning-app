@@ -10,10 +10,21 @@ import {
   AiOutlineUpload,
   AiOutlineHome,
 } from "react-icons/ai";
+import { MdOutlineWork } from "react-icons/md";
 import { BsPersonCircle } from "react-icons/bs";
 
 const Navbar = () => {
   const DropLinks = [
+    {
+      url: "/profile/rakib38",
+      icon: <BsPersonCircle />,
+      text: "Profile",
+    },
+    {
+      url: "/feed",
+      icon: <MdOutlineWork />,
+      text: "Jobs",
+    },
     {
       url: "/",
       icon: <AiOutlineHome />,
@@ -23,11 +34,6 @@ const Navbar = () => {
       url: "#",
       icon: <AiOutlinePlus />,
       text: "Upload Problem",
-    },
-    {
-      url: "#",
-      icon: <BsPersonCircle />,
-      text: "Profile",
     },
   ];
 
@@ -43,7 +49,7 @@ const Navbar = () => {
         <div className="flex items-center lg:gap-10">
           {/* post */}
           <Link href="#" className="hidden lg:block">
-            <button className="btn btn-sm px-5 py-2 btn-success gap-2 text-white rounded-full">
+            <button className="btn btn-sm px-5 py-2 btn-sar gap-2 rounded-full">
               Upload problem <AiOutlineUpload />{" "}
             </button>
           </Link>
@@ -51,8 +57,8 @@ const Navbar = () => {
           <div className="hidden md:flex md:mr-10 lg:mr-0 gap-5">
             <Link href="#">
               <p className="indicator tab tab-lifted tab-active border-none text-xl">
-                <span className="indicator-item badge rounded-full badge-error">
-                  99+
+                <span className="indicator-item badge rounded-full badge-error text-white font-bold">
+                  9
                 </span>
                 <span className="bg-base-200 p-2 rounded-full">
                   <AiOutlineBell />
@@ -61,7 +67,7 @@ const Navbar = () => {
             </Link>
             <Link href="#">
               <p className="indicator tab tab-lifted tab-active border-none text-xl">
-                <span className="indicator-item rounded-full badge badge-error">
+                <span className="indicator-item rounded-full badge badge-error text-white font-bold">
                   4
                 </span>
                 <span className="bg-base-200 p-2 rounded-full">
