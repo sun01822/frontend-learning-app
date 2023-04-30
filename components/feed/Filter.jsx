@@ -1,22 +1,32 @@
-import React from "react";
+import {useState} from "react";
+import {MdOutlineExpandLess,MdOutlineExpandMore} from "react-icons/md";
 
 const Filter = () => {
+  const [isExpend, setIsExpend] = useState(false);
+
   return (
     <div className="bg-white rounded-lg p-4 sticky top-2 overflow-y-auto">
+      <div className="flex items-center justify-between">
       <h3 className="font-semibold text-xl">Filters</h3>
+      <button className="md:hidden text-2xl" onClick={() => setIsExpend(!isExpend)}>
+        {isExpend ? <MdOutlineExpandLess /> : <MdOutlineExpandMore />}
+      </button>
+      </div>
+      <div className={isExpend ? "block" : "hidden md:block"}>
       <h3 className="font-semibold text-sm uppercase text-gray-400 mt-6">
         Price Range (tk)
       </h3>
       <div className="flex items-center justify-between mt-2 mb-4">
-        <div>
+        <div className="">
           <input
             type="number"
-            className="max-w-[120px] focus:outline-none border py-1 px-3 rounded-md"
+            className="max-w-[100px] focus:outline-none border py-1 px-3 rounded-md"
             placeholder="From"
           />
+          &nbsp;
           <input
             type="number"
-            className="max-w-[120px] focus:outline-none border  py-1 px-3 rounded-md"
+            className="max-w-[100px] focus:outline-none border  py-1 px-3 rounded-md"
             placeholder="To"
           />
         </div>
@@ -81,6 +91,7 @@ const Filter = () => {
           <button className="mt-2 btn btn-sm px-4 text-white rounded-md">
             Filter
           </button>
+        </div>
         </div>
       </div>
     </div>
