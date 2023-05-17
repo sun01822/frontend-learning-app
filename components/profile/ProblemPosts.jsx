@@ -12,7 +12,7 @@ const ProblemPosts = () => {
         <div className="flex flex-wrap gap-4 justify-between items-center mt-3 border-t pt-3">
           <Link href="/problems/2">
             <h2 className="font-semibold hover:text-primary">
-              Need help hosting topic on Javascript. Anlsajdlk alksjd lkajsldfk
+              Need help hosting topic on Javascript.
             </h2>
           </Link>
           <button className="btn btn-error btn-sm rounded-full text-white">
@@ -22,7 +22,7 @@ const ProblemPosts = () => {
         <div className="flex flex-wrap gap-4 justify-between items-center mt-3 border-t pt-3">
           <Link href="/problems/2">
             <h2 className="font-semibold hover:text-primary">
-              Math fucking problem
+              Math problem
             </h2>
           </Link>
           <button className="btn btn-error btn-sm rounded-full text-white">
