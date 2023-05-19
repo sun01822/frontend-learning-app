@@ -23,7 +23,7 @@ const About = () => {
         <>
             <div className="p-4 mt-32">
                 <div class="flex items-center justify-center h-full">
-                    <div class="h-16 w-2 bg-green-500 m-2"></div><h1 className="text-4xl font-bold mb-4 text-center">About Us</h1>
+                    <div class="h-16 w-2 bg-green-500 m-2"></div><h1 className="text-4xl font-bold mb-4 text-center"><span className="text-green-500">About</span> Us</h1>
                 </div>
                 <p className="text-xl text-center">A modern and unique system to share experience and earn money</p>
             </div>

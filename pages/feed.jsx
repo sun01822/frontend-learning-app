@@ -13,7 +13,6 @@ const Feed = () => {
         </div>
         <div className="col-span-12 md:col-span-8">
           <Problems />
-
         </div>
       </div>
     </div>

@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const Card = ({ data }) => {
   return (
     <div className="relative">
