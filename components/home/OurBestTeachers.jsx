@@ -72,8 +72,8 @@ const OurBestTeachers = () => {
   return (
     <>
       <div className="p-4 mt-48">
-        <div class="flex items-center justify-center h-full">
-          <div class="h-16 w-2 bg-green-500 m-2"></div><h1 className="text-4xl font-bold mb-4 text-center"><span className="text-green-500">Our</span> Best Teachers</h1>
+        <div className="flex items-center justify-center h-full">
+          <div className="h-16 w-2 bg-green-500 m-2"></div><h1 className="text-4xl font-bold mb-4 text-center"><span className="text-green-500">Our</span> Best Teachers</h1>
         </div>
         <p className="text-xl text-center">They are adept at fostering interactive and dynamic learning environments that inspire and empower students.</p>
       </div>
