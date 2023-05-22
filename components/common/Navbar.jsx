@@ -31,7 +31,7 @@ const Navbar = () => {
       text: "Home",
     },
     {
-      url: "#",
+      url: "/post/125",
       icon: <AiOutlinePlus />,
       text: "Upload Problem",
     },
@@ -48,7 +48,7 @@ const Navbar = () => {
         {/* Nav Links */}
         <div className="flex items-center lg:gap-10">
           {/* post */}
-          <Link href="#" className="hidden lg:block">
+          <Link href="/post/456" className="hidden lg:block">
             <button className="btn btn-sm px-5 py-2 btn-sar gap-2 rounded-full">
               Upload problem <AiOutlineUpload />{" "}
             </button>
