@@ -38,13 +38,12 @@ const UploadProblem = () => {
       onSubmit={handleSubmit}
       className="bg-white border-b py-6 px-5 rounded-lg mt-2"
     >
-      <h1 className="text-5xl text-gray-900 dark:text-black">Add a Title</h1>
-      <hr />
+      <h1 className="secondary_title uppercase">Add Problem Title</h1>
       <br />
       <textarea
         id="title"
         rows="2"
-        className="textarea textarea-sm  rounded-lg w-full bg-base-200 focus:outline-none"
+        className="textarea textarea-bordered w-full"
         placeholder="Need help to host my website ..."
         value={title}
         onChange={(e) => setTitle(e.target.value)}
@@ -52,12 +51,13 @@ const UploadProblem = () => {
       {errors.title && <span className="text-red-500">{errors.title}</span>}
       <br />
       <br />
-      <p>The more context you provide, the better our experts can help you.</p>
-      <hr class="h-px my-1 bg-gray-200 border-0 dark:bg-gray-200" />
+      <p className="mb-3">
+        The more context you provide, the better our experts can help you.
+      </p>
       <textarea
         id="description"
         rows="4"
-        className="textarea textarea-sm  rounded-lg w-full bg-base-200 focus:outline-none"
+        className="textarea textarea-bordered w-full"
         placeholder="Provide more context here..."
         value={description}
         onChange={(e) => setDescription(e.target.value)}
@@ -66,10 +66,10 @@ const UploadProblem = () => {
         <span className="text-red-500">{errors.description}</span>
       )}
       <br /> <br />
-      <div className="justify-between mt-4 flex">
+      <div className="flex flex-col md:flex-row justify-between mt-4">
         <select
           id="category"
-          className="block mb-2 text-sm font-medium text-gray-900 border-solid"
+          className="select select-bordered"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
@@ -91,25 +91,19 @@ const UploadProblem = () => {
         <input
           type="number"
           id="budget"
-          className="bg-base-200 focus:outline-none rounded-md py-3 px-3  "
+          className="input input-bordered"
           placeholder="Enter budget (Taka)"
           value={budget}
           onChange={(e) => setBudget(e.target.value)}
         />
         {errors.budget && <span className="text-red-500">{errors.budget}</span>}
       </div>
-      <div className="mt-6  flex justify-end">
-        <button
-          type="submit"
-          className="btn btn-sar px-5 py-2 mr-4 rounded-full"
-        >
-          Post your problem
-        </button>
-        <button
-          type="reset"
-          className="btn bg-gray-700 hover:bg-red-600 px-5 py-2 mr-4 rounded-full"
-        >
+      <div className="mt-6 flex justify-end">
+        <button type="reset" className="btn_secondary mr-4 ">
           Cancel
+        </button>
+        <button type="submit" className="btn btn-sar px-5 py-2 rounded-full">
+          Post your problem
         </button>
       </div>
     </form>

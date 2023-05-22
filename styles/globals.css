@@ -9,10 +9,16 @@
 }
 
 @layer components {
+  .title {
+    @apply text-3xl font-bold;
+  }
+  .secondary_title {
+    @apply text-2xl font-bold;
+  }
   .btn-sar {
     @apply bg-green-500 px-6 text-white hover:bg-green-600 border-none rounded-full;
   }
   .btn_secondary {
-    @apply bg-gray-700 py-2 px-6 text-white hover:bg-gray-600 border-none rounded-full;
+    @apply bg-gray-700 uppercase py-2 px-6 text-white hover:bg-gray-600 border-none rounded-full;
   }
 }
