@@ -1,4 +1,7 @@
 import AnimatedCard from "./AnimatedCard";
+import React from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const OurBestTeachers = () => {
   const cardData = [
@@ -12,7 +15,7 @@ const OurBestTeachers = () => {
     },
     {
       name: 'Zara Rahman',
-      image: 'https://www.english.com/blog/wp-content/uploads/2020/04/Teaching-online-FAQs-1132x670.jpg',
+      image: 'https://img.freepik.com/free-photo/happy-teacher-talking-with-her-students-online_23-2148771465.jpg',
       facebookId: 'janesmith',
       twitterId: 'janesmith',
       googleId: "",
@@ -28,45 +31,12 @@ const OurBestTeachers = () => {
     },
     {
       name: 'Jane Smith',
-      image: 'https://www.wgu.edu/content/dam/web-sites/blog-newsroom/blog/images/national/2020/march/6-ways-to-improve-online-teaching.jpg',
+      image: 'https://nafme.org/wp-content/uploads/2021/01/Black-teacher-with-headphones-teaching-online-credit-fizkes.jpg',
       facebookId: 'janesmith',
       twitterId: 'janesmith',
       googleId: "",
       linkedinId: ""
     },
-    {
-      name: 'Jane Smith',
-      image: 'https://www.wgu.edu/content/dam/web-sites/blog-newsroom/blog/images/national/2020/march/6-ways-to-improve-online-teaching.jpg',
-      facebookId: 'janesmith',
-      twitterId: 'janesmith',
-      googleId: "",
-      linkedinId: ""
-    },
-    {
-      name: 'Jane Smith',
-      image: 'https://www.wgu.edu/content/dam/web-sites/blog-newsroom/blog/images/national/2020/march/6-ways-to-improve-online-teaching.jpg',
-      facebookId: 'janesmith',
-      twitterId: 'janesmith',
-      googleId: "",
-      linkedinId: ""
-    },
-    {
-      name: 'Jane Smith',
-      image: 'https://www.wgu.edu/content/dam/web-sites/blog-newsroom/blog/images/national/2020/march/6-ways-to-improve-online-teaching.jpg',
-      facebookId: 'janesmith',
-      twitterId: 'janesmith',
-      googleId: "",
-      linkedinId: ""
-    },
-    {
-      name: 'Jane Smith',
-      image: 'https://www.wgu.edu/content/dam/web-sites/blog-newsroom/blog/images/national/2020/march/6-ways-to-improve-online-teaching.jpg',
-      facebookId: 'janesmith',
-      twitterId: 'janesmith',
-      googleId: "",
-      linkedinId: ""
-    },
-
   ];
 
   return (
@@ -77,19 +47,21 @@ const OurBestTeachers = () => {
         </div>
         <p className="text-xl text-center">They are adept at fostering interactive and dynamic learning environments that inspire and empower students.</p>
       </div>
-      <div className="flex justify-center items-center mt-16 mb-16">
-        <div className="flex overflow-x-scroll">
-          {cardData.map((card, index) => (
-            <AnimatedCard
-              key={index}
-              name={card.name}
-              image={card.image}
-              facebookId={card.facebookId}
-              twitterId={card.twitterId}
-              googleId={card.googleId}
-              linkedinId={card.linkedinId}
-            />
-          ))}
+      <div>
+        <div>
+          <Carousel autoPlay interval={3000} infiniteLoop>
+            {cardData.map((card, index) => (
+              <AnimatedCard
+                key={index}
+                name={card.name}
+                image={card.image}
+                facebookId={card.facebookId}
+                twitterId={card.twitterId}
+                googleId={card.googleId}
+                linkedinId={card.linkedinId}
+              />
+            ))}
+          </Carousel>
         </div>
       </div>
     </>
