@@ -1,56 +1,49 @@
 import { FaFacebook, FaTwitter, FaGoogle, FaLinkedin } from 'react-icons/fa';
-import { motion } from 'framer-motion';
 
 const AnimatedCard = ({ name, image, facebookId, twitterId, googleId, linkedinId }) => {
     return (
-        <div className="w-full rounded-lg mx-4 my-8">
-            <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-64 rounded-lg overflow-hidden"
-            >
+        <div className="w-120 rounded-full mx-4 my-8">
                 <img
                     src={image}
                     alt={name}
-                    className="w-full h-48 object-cover rounded-2xl"
+                    className="object-cover rounded-3xl"
                 />
                 <div className="p-4">
-                    <h3 className="text-xl text-center font-semibold mb-2">{name}</h3>
+                    <h3 className="text-3xl text-center font-semibold mb-2">{name}</h3>
                     <div className="flex items-center justify-center">
                         <a
                             href={`https://www.facebook.com/${facebookId}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mr-2"
+                            className="mr-4"
                         >
-                            <FaFacebook className="text-blue-600" />
+                            <FaFacebook className="text-2xl text-blue-600" />
                         </a>
                         <a
                             href={`https://twitter.com/${twitterId}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mr-2"
+                            className="mr-4"
                         >
-                            <FaTwitter className="text-blue-500" />
+                            <FaTwitter className="text-2xl text-blue-500" />
                         </a>
                         <a
                             href={`https://www.google.com`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mr-2"
+                            className="mr-4"
                         >
-                            <FaGoogle className="text-red-600" />
+                            <FaGoogle className="text-2xl text-red-600" />
                         </a>
                         <a
                             href={`https://www.linkedin.com/in/${linkedinId}`}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <FaLinkedin className="text-blue-600" />
+                            <FaLinkedin className="text-2xl text-blue-600" />
                         </a>
                     </div>
                 </div>
-            </motion.div>
         </div>
     );
 };

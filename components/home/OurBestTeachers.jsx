@@ -1,4 +1,7 @@
 import AnimatedCard from "./AnimatedCard";
+import React from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const OurBestTeachers = () => {
   const cardData = [
@@ -90,19 +93,21 @@ const OurBestTeachers = () => {
           environments that inspire and empower students.
         </p>
       </div>
-      <div className="flex justify-center items-center mt-16 mb-16">
-        <div className="flex overflow-x-scroll">
-          {cardData.map((card, index) => (
-            <AnimatedCard
-              key={index}
-              name={card.name}
-              image={card.image}
-              facebookId={card.facebookId}
-              twitterId={card.twitterId}
-              googleId={card.googleId}
-              linkedinId={card.linkedinId}
-            />
-          ))}
+      <div>
+        <div>
+          <Carousel autoPlay interval={3000} infiniteLoop>
+            {cardData.map((card, index) => (
+              <AnimatedCard
+                key={index}
+                name={card.name}
+                image={card.image}
+                facebookId={card.facebookId}
+                twitterId={card.twitterId}
+                googleId={card.googleId}
+                linkedinId={card.linkedinId}
+              />
+            ))}
+          </Carousel>
         </div>
       </div>
     </>
