@@ -9,6 +9,8 @@ import {
   AiOutlinePlus,
   AiOutlineUpload,
   AiOutlineHome,
+  AiOutlineLogout,
+  AiOutlineSetting,
 } from "react-icons/ai";
 import { MdOutlineWork } from "react-icons/md";
 import { BsPersonCircle } from "react-icons/bs";
@@ -25,15 +27,26 @@ const Navbar = () => {
       icon: <MdOutlineWork />,
       text: "Jobs",
     },
+
+    {
+      url: "/post/125",
+      icon: <AiOutlinePlus />,
+      text: "Upload Problem",
+    },
+    {
+      url: "/setting/123",
+      icon: <AiOutlineSetting />,
+      text: "Setting",
+    },
     {
       url: "/",
       icon: <AiOutlineHome />,
       text: "Home",
     },
     {
-      url: "/post/125",
-      icon: <AiOutlinePlus />,
-      text: "Upload Problem",
+      url: "/",
+      icon: <AiOutlineLogout />,
+      text: "Log out",
     },
   ];
 
