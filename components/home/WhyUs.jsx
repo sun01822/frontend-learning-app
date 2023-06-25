@@ -34,8 +34,8 @@ const WhyUs = () => {
                             </div>
                         ))}
                     </div>
-                    <div className="w-1/2 flex justify-center items-center mr-4 mb-24">
-                        <img src="/images/whyus.jpg" alt="Oval Image" className="w-96 h-auto rounded-full brightness-125" />
+                    <div className="w-1/2 flex justify-center items-center mt-8 mr-16 mb-24">
+                        <img src="/images/whyus.jpg" alt="Oval Image" className="w-full h-96 rounded-full" />
                     </div>
                 </div>
             </div>

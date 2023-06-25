@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import NotificationDropDown from "./NotificationDropDown";
+import MessageDropDown from "./MessageDropDown";
 import Logo from "../../public/images/logo.svg";
 import Rakib from "../../public/images/rakib.jpg";
 import Link from "next/link";
+import { useState } from 'react';
 import {
-  AiOutlineBell,
-  AiOutlineMessage,
   AiOutlinePlus,
   AiOutlineUpload,
   AiOutlineHome,
@@ -36,6 +37,7 @@ const Navbar = () => {
       text: "Upload Problem",
     },
   ];
+  
 
   return (
     <div className="w-full bg-white">
@@ -55,26 +57,8 @@ const Navbar = () => {
           </Link>
           {/* icons */}
           <div className="hidden md:flex md:mr-10 lg:mr-0 gap-5">
-            <Link href="#">
-              <p className="indicator tab tab-lifted tab-active border-none text-xl">
-                <span className="indicator-item badge rounded-full badge-error text-white font-bold">
-                  9
-                </span>
-                <span className="bg-base-200 p-2 rounded-full">
-                  <AiOutlineBell />
-                </span>
-              </p>
-            </Link>
-            <Link href="#">
-              <p className="indicator tab tab-lifted tab-active border-none text-xl">
-                <span className="indicator-item rounded-full badge badge-error text-white font-bold">
-                  4
-                </span>
-                <span className="bg-base-200 p-2 rounded-full">
-                  <AiOutlineMessage />
-                </span>
-              </p>
-            </Link>
+            <NotificationDropDown />
+            <MessageDropDown />
           </div>
           {/* user */}
           <div className="flex gap-3 items-center">

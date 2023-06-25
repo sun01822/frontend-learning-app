@@ -19,12 +19,12 @@ const OurNews = () => {
 
     return (
         <>
-            <div className="bg-sky-200/50">
-                <div className="flex items-center justify-center h-full">
-                    <div className="h-16 w-2 bg-green-500 mt-16 mr-2"></div><h1 className="text-5xl font-bold mb-4 text-center mt-16"><span className="text-green-500">Our</span> News</h1>
+            <div className="p-10 bg-sky-200/50">
+                <div className="flex items-center justify-center">
+                    <div className="h-16 w-2 bg-green-500 mt-10 mr-2"></div><h1 className="text-5xl font-bold mb-4 text-center mt-10"><span className="text-green-500">Our</span> News</h1>
                 </div>
-                <div className="flex justify-center items-center mt-10">
-                    <div className="w-2/3 bg-white shadow-lg rounded-lg p-8">
+                <div className="mt-16 mb-16">
+                    <div className="w-2/3 bg-white shadow-lg rounded-lg p-8 mx-auto">
                         <img
                             src={imageDirectory + imageFiles[currentImageIndex]}
                             alt="Image"

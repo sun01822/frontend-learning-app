@@ -81,7 +81,7 @@ const OurBestTeachers = () => {
 
   return (
     <>
-      <div className="p-4 mt-48">
+      <div className="p-4 mt-32">
         <div className="flex items-center justify-center h-full">
           <div className="h-16 w-2 bg-green-500 m-2"></div>
           <h1 className="text-4xl font-bold mb-4 text-center">
@@ -89,8 +89,7 @@ const OurBestTeachers = () => {
           </h1>
         </div>
         <p className="text-xl text-center">
-          They are adept at fostering interactive and dynamic learning
-          environments that inspire and empower students.
+          Experience learning with our exceptional team of dedicated and experienced teachers.
         </p>
       </div>
       <div>
