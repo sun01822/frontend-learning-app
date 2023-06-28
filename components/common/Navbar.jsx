@@ -19,30 +19,29 @@ import { BsPersonCircle } from "react-icons/bs";
 const Navbar = () => {
   const DropLinks = [
     {
-      url: "/profile/rakib38",
-      icon: <BsPersonCircle />,
-      text: "Profile",
+      url: "/",
+      icon: <AiOutlineHome />,
+      text: "Home",
     },
-    {
-      url: "/feed",
-      icon: <MdOutlineWork />,
-      text: "Jobs",
-    },
-
     {
       url: "/post/125",
       icon: <AiOutlinePlus />,
       text: "Upload Problem",
     },
     {
+      url: "/feed",
+      icon: <MdOutlineWork />,
+      text: "Jobs",
+    },
+    {
+      url: "/profile/rakib38",
+      icon: <BsPersonCircle />,
+      text: "Profile",
+    },
+    {
       url: "/setting/123",
       icon: <AiOutlineSetting />,
       text: "Setting",
-    },
-    {
-      url: "/",
-      icon: <AiOutlineHome />,
-      text: "Home",
     },
     {
       url: "/",
