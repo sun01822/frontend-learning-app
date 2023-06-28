@@ -7,7 +7,7 @@ const ProblemPosts = () => {
       <div className="flex justify-between pb-4">
         <h3 className="text-xl font-semibold">Posted Problems</h3>
         <Link href="/post/125">
-          <button className="btn btn-sar btn-sm">New Problems</button>
+          <button className="btn btn_sar btn-sm">New Problems</button>
         </Link>
       </div>
       <div>

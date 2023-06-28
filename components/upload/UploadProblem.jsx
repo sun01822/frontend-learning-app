@@ -31,31 +31,66 @@ const UploadProblem = () => {
     },
     {
       name: "Math",
-      subcategories: ["Calculus", "Linear Algebra", "Probability", "Statistics"],
+      subcategories: [
+        "Calculus",
+        "Linear Algebra",
+        "Probability",
+        "Statistics",
+      ],
     },
     {
       name: "Physics",
-      subcategories: ["Classical Mechanics", "Electromagnetism", "Quantum Mechanics", "Thermodynamics"],
+      subcategories: [
+        "Classical Mechanics",
+        "Electromagnetism",
+        "Quantum Mechanics",
+        "Thermodynamics",
+      ],
     },
     {
       name: "Chemistry",
-      subcategories: ["Organic Chemistry", "Inorganic Chemistry", "Physical Chemistry", "Analytical Chemistry"],
+      subcategories: [
+        "Organic Chemistry",
+        "Inorganic Chemistry",
+        "Physical Chemistry",
+        "Analytical Chemistry",
+      ],
     },
     {
       name: "Website Hosting",
-      subcategories: ["Shared Hosting", "Virtual Private Server (VPS)", "Dedicated Hosting", "Cloud Hosting"],
+      subcategories: [
+        "Shared Hosting",
+        "Virtual Private Server (VPS)",
+        "Dedicated Hosting",
+        "Cloud Hosting",
+      ],
     },
     {
       name: "Web Development",
-      subcategories: ["Front-end Development", "Back-end Development", "Full-stack Development", "Responsive Design"],
+      subcategories: [
+        "Front-end Development",
+        "Back-end Development",
+        "Full-stack Development",
+        "Responsive Design",
+      ],
     },
     {
       name: "Graphic Design",
-      subcategories: ["Logo Design", "UI/UX Design", "Print Design", "Illustration"],
+      subcategories: [
+        "Logo Design",
+        "UI/UX Design",
+        "Print Design",
+        "Illustration",
+      ],
     },
     {
       name: "Marketing",
-      subcategories: ["Digital Marketing", "Social Media Marketing", "Content Marketing", "Email Marketing"],
+      subcategories: [
+        "Digital Marketing",
+        "Social Media Marketing",
+        "Content Marketing",
+        "Email Marketing",
+      ],
     },
     {
       name: "Others",
@@ -191,7 +226,7 @@ const UploadProblem = () => {
         <button type="reset" className="btn_secondary mr-4">
           Cancel
         </button>
-        <button type="submit" className="btn btn-sar px-5 py-2 rounded-full">
+        <button type="submit" className="btn btn_sar px-5 py-2 rounded-full">
           Post your problem
         </button>
       </div>

@@ -15,10 +15,13 @@
   .secondary_title {
     @apply text-2xl font-bold;
   }
-  .btn-sar {
+  .btn_sar {
     @apply bg-green-500 px-6 text-white hover:bg-green-600 border-none rounded-full;
   }
   .btn_secondary {
     @apply bg-gray-700 uppercase py-2 px-6 text-white hover:bg-gray-600 border-none rounded-full;
+  }
+  .text_link {
+    @apply font-bold text-green-500 underline;
   }
 }
