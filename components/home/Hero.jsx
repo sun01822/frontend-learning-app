@@ -14,7 +14,7 @@ const Hero = () => {
           </p>
           <div className="text-left mx-auto mt">
             <Link href="/feed">
-              <button className="mt-10 py-2 mr-4 btn-sar">Start Now</button>
+              <button className="mt-10 py-2 mr-4 btn_sar">Start Now</button>
             </Link>
             <Link href="#about">
               <button className="btn_secondary">Learn more</button>

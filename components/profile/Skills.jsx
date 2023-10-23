@@ -5,7 +5,7 @@ const Skills = () => {
     <div className="mt-2 p-4 lg:p-10 rounded-lg bg-white min-w-[350px]">
       <div className="flex justify-between pb-4">
         <h3 className="text-xl font-semibold">Skills</h3>
-        <button className="btn btn-sar btn-sm">Add skills</button>
+        <button className="btn btn_sar btn-sm">Add skills</button>
       </div>
       <div className="overflow-x-auto">
         <table className="table table-compact w-full">

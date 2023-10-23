@@ -1,7 +1,7 @@
 import AnimatedCard from "./AnimatedCard";
-import React from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import React from "react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const OurBestTeachers = () => {
   const cardData = [
@@ -89,7 +89,8 @@ const OurBestTeachers = () => {
           </h1>
         </div>
         <p className="text-xl text-center">
-          Experience learning with our exceptional team of dedicated and experienced teachers.
+          Experience learning with our exceptional team of dedicated and
+          experienced teachers.
         </p>
       </div>
       <div>
@@ -100,6 +101,7 @@ const OurBestTeachers = () => {
                 key={index}
                 name={card.name}
                 image={card.image}
+                showThumbs={false}
                 facebookId={card.facebookId}
                 twitterId={card.twitterId}
                 googleId={card.googleId}

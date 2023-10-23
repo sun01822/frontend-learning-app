@@ -74,7 +74,7 @@ const Apply = () => {
         <div className="mt-10">
           <div className="flex items-center gap-4">
             <Link href="#">
-              <button className="btn btn-sm gap-2 btn-sar text-white rounded-full px-3">
+              <button className="btn btn-sm gap-2 btn_sar text-white rounded-full px-3">
                 Apply Job <AiOutlineSend />
               </button>
             </Link>
