@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Rakib from "../../public/images/rakib.jpg";
+import Link from "next/link";
+import { AiFillEdit } from "react-icons/ai";
 
 const Banner = () => {
   return (
@@ -11,9 +13,19 @@ const Banner = () => {
           alt="Rakib"
         />
         <div>
-          <h3 className="text-xl font-semibold">Md.Rakibuzzaman</h3>
+          <h3 className="text-xl font-semibold flex items-center">
+            Md.Rakibuzzaman &nbsp;
+          </h3>
           <p className="text-sm pt-1">Web Developer</p>
           <p className="text-sm pt-1">Varendra University</p>
+          <Link
+            href="/setting/234"
+            className="tooltip btn mt-3 flex items-center gap-2"
+            data-tip="Edit Profile"
+          >
+            <AiFillEdit />
+            Edit Profile
+          </Link>
         </div>
       </div>
       <div className="min-w-[300px] bg-base-300 p-4 rounded-lg">
