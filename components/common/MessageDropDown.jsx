@@ -57,7 +57,6 @@ const MessageDropDown = () => {
         </p></label>                                                                                                                                                                                            
                 <div tabIndex={0} className="dropdown-content z-[1] w-96 h-96 bg-white rounded-box shadow overflow-y-auto">
                     {messages.map((message) => (
-                        <a href="/profile/rakib38">
                         <div
                     
                             key={message.id}
@@ -76,7 +75,7 @@ const MessageDropDown = () => {
                                 </div>
                             </div>
                         </div>
-                        </a>
+
                     ))}
                 </div>
             </div>
@@ -85,3 +84,5 @@ const MessageDropDown = () => {
 };
 
 export default MessageDropDown;
+
+

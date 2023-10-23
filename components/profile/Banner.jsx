@@ -19,7 +19,7 @@ const Banner = () => {
       <div className="min-w-[300px] bg-base-300 p-4 rounded-lg">
         <div className="flex justify-between border-b border-gray-400 pb-3">
           <p className="font-semibold">Total Earning</p>
-          <p className="font-bold">110 tk</p>
+          <p className="font-bold">110K tk</p>
         </div>
         <div className="flex justify-between pt-3">
           <p className="font-semibold">Level</p>

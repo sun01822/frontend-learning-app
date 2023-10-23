@@ -77,7 +77,7 @@ const Navbar = () => {
           <div className="flex gap-3 items-center">
             <div className="text-right">
               <h3 className="font-bold text-sm text-black">Md.Rakibuzzaman</h3>
-              <p className="text-sm">৳ 10.00 BDT</p>
+              <p className="text-sm">৳ 10.00K BDT</p>
             </div>
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="cursor-pointer">
