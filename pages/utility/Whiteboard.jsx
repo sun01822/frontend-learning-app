@@ -373,7 +373,7 @@ const Whiteboard = () => {
 
         <button
           className={`flex items-center space-x-2 ${
-            mode === "pen" ? "selected" : ""
+            mode === "pen" ? "selectShape" : ""
           }`}
           onClick={() => handleModeChange("pen")}
         >
@@ -383,7 +383,7 @@ const Whiteboard = () => {
 
         <button
           className={`flex items-center space-x-2 ${
-            mode === "rectangle" ? "selected" : ""
+            mode === "rectangle" ? "selectShape" : ""
           }`}
           onClick={() => handleModeChange("rectangle")}
         >
@@ -393,7 +393,7 @@ const Whiteboard = () => {
 
         <button
           className={`flex items-center space-x-2 ${
-            mode === "triangle" ? "selected" : ""
+            mode === "triangle" ? "selectShape" : ""
           }`}
           onClick={() => handleModeChange("triangle")}
         >
@@ -403,7 +403,7 @@ const Whiteboard = () => {
 
         <button
           className={`flex items-center space-x-2 ${
-            mode === "line" ? "selected" : ""
+            mode === "line" ? "selectShape" : ""
           }`}
           onClick={() => handleModeChange("line")}
         >
@@ -413,7 +413,7 @@ const Whiteboard = () => {
 
         <button
           className={`flex items-center space-x-2 ${
-            mode === "circle" ? "selected" : ""
+            mode === "circle" ? "selectShape" : ""
           }`}
           onClick={() => handleModeChange("circle")}
         >
@@ -422,7 +422,7 @@ const Whiteboard = () => {
         </button>
         <button
           className={`flex items-center space-x-2 ${
-            mode === "eraser" ? "selected" : ""
+            mode === "eraser" ? "selectShape" : ""
           }`}
           onClick={handleEraserClick}
         >
