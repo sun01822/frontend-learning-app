@@ -2,14 +2,24 @@ import "@/styles/globals.css";
 import Layout from "@/components/common/Layout";
 import NextNProgress from "nextjs-progressbar";
 import { ClerkProvider } from "@clerk/nextjs";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
+  console.log("Router: ", router.pathname);
   return (
     <ClerkProvider>
-      <Layout>
-        <NextNProgress color="#14bf09" />
-        <Component {...pageProps} />
-      </Layout>
+      {router.pathname.includes("whiteboard") ? (
+        <>
+          <NextNProgress color="#14bf09" />
+          <Component {...pageProps} />
+        </>
+      ) : (
+        <Layout>
+          <NextNProgress color="#14bf09" />
+          <Component {...pageProps} />
+        </Layout>
+      )}
     </ClerkProvider>
   );
 }

@@ -14,10 +14,12 @@ const Hero = () => {
           </p>
           <div className="text-left mx-auto mt">
             <Link href="/feed">
-              <button className="mt-10 py-2 mr-4 btn_sar">Start Now</button>
+              <button className="mt-10 py-2 mr-4 btn_sar">
+                Start Teaching
+              </button>
             </Link>
             <Link href="#about">
-              <button className="btn_secondary">Learn more</button>
+              <button className="btn_secondary capitalize">Learn more</button>
             </Link>
           </div>
         </div>
@@ -27,7 +29,6 @@ const Hero = () => {
           src="https://www.thoughtco.com/thmb/dChBnpU_nYn0QE54kiA_s-H9nHo=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/teenage-students-in-classroom--141090063-5a653ed40c1a8200366bdd66.jpg"
         />
       </div>
-      <Link href="/conversation/23" >Start Conversation</Link>
     </>
   );
 };

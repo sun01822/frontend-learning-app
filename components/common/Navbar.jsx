@@ -1,14 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import { MdLogin } from "react-icons/md";
 import NotificationDropDown from "./NotificationDropDown";
 import MessageDropDown from "./MessageDropDown";
-import { FcGoogle } from "react-icons/fc";
 import Logo from "../../public/images/logo.svg";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import Rakib from "../../public/images/rakib.jpg";
+import { BsClipboard } from "react-icons/bs";
+import { BiMessageRounded } from "react-icons/bi";
 import Link from "next/link";
-import { useState } from "react";
+
 import {
   AiOutlinePlus,
   AiOutlineUpload,
@@ -93,44 +92,56 @@ const Navbar = () => {
           {/* user */}
           <div className="flex gap-3 items-center">
             <div className="text-right">
-              <h3 className="font-bold text-sm text-black">Md.Rakibuzzaman</h3>
-              <p className="text-sm">৳ 10.00K BDT</p>
-
-          {isSignedIn ? (
-            <div className="dropdown dropdown-hover dropdown-end">
-              <label tabIndex={0} className="m-1 flex gap-2 items-center">
-                <span className="font-semibold">{user.fullName}</span>
-                <img
-                  className="w-[40px] rounded-full border"
-                  src={user.imageUrl}
-                  alt="Image"
-                />
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content z-[1] menu p-2 shadow border bg-base-100 rounded-lg w-52"
-              >
-                <li>
-                  <Link href="/profile/rakib38" className="gap-2">
-                    <CgProfile /> Profile
-                  </Link>
-                </li>
-                <li>
-                  <SignOutButton>
-                    <button className="gap-2">
-                      <AiOutlineLogout /> Sign Out
-                    </button>
-                  </SignOutButton>
-                </li>
-              </ul>
+              {isSignedIn ? (
+                <div className="dropdown dropdown-hover dropdown-end">
+                  <label tabIndex={0} className="m-1 flex gap-2 items-center">
+                    <div>
+                      <span className="font-semibold">{user.fullName}</span>
+                      <p className="text-sm">৳ 1K BDT</p>
+                    </div>
+                    <img
+                      className="w-[40px] rounded-full border"
+                      src={user.imageUrl}
+                      alt="Image"
+                    />
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content z-[1] menu p-2 shadow border bg-base-100 rounded-lg w-52"
+                  >
+                    <li>
+                      <Link href="/profile/rakib38" className="gap-2">
+                        <CgProfile /> Profile
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/conversation/38" className="gap-2">
+                        <BiMessageRounded /> Messages
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/utility/whiteboard" className="gap-2">
+                        <BsClipboard /> Whiteboard
+                      </Link>
+                    </li>
+                    <li>
+                      <SignOutButton>
+                        <button className="gap-2">
+                          <AiOutlineLogout /> Sign Out
+                        </button>
+                      </SignOutButton>
+                    </li>
+                  </ul>
+                </div>
+              ) : (
+                <Link href="/sign-up">
+                  <button className="btn_sm gap-2">
+                    Sign up <AiOutlineArrowRight />
+                  </button>
+                </Link>
+              )}
             </div>
-          ) : (
-            <Link href="/sign-up">
-              <button className="btn_sm gap-2">
-                Sign up <AiOutlineArrowRight />
-              </button>
-            </Link>
-          )}
+          </div>
         </div>
       </div>
     </div>

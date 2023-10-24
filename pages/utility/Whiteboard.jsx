@@ -18,6 +18,9 @@ import { BiRectangle, BiUndo } from "react-icons/bi";
 import { BsTriangle } from "react-icons/bs";
 import { FaEraser } from "react-icons/fa";
 import { GiMoebiusTriangle, GiStraightPipe, GiClick } from "react-icons/gi";
+import Logo from "../../public/images/logo.svg";
+import { useRouter } from "next/router";
+import Image from "next/image";
 
 const Whiteboard = () => {
   const [mode, setMode] = useState("pen");
@@ -30,7 +33,7 @@ const Whiteboard = () => {
   //const [canvasImage, setCanvasImage] = useState("");
   // const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
   const [canvasSize, setCanvasSize] = useState({
-    width: 1200 - 15,
+    width: 1900 - 15,
     height: 1600,
   });
   const [scale, setScale] = useState(1); // Initialize scale to 1 (no zoom)
@@ -238,9 +241,18 @@ const Whiteboard = () => {
     };
   }, []);
 
+  const router = useRouter();
+
   return (
-    <div className="bg-white ">
-      <div className="w-full fixed z-50 "></div>
+    <div className="bg-white w-full h-screen overflow-hidden">
+      <div className="w-[150px] absolute bg-white z-50 rounded-lg">
+        <Image
+          onClick={() => router.back()}
+          className="w-[150px] p-4 drop-shadow cursor-pointer"
+          src={Logo}
+          alt="Logo"
+        />
+      </div>
       <Stage
         width={canvasSize.width}
         height={canvasSize.height}
