@@ -16,6 +16,7 @@
     "daisyui": "^2.51.5",
     "formik": "^2.4.2",
     "framer-motion": "^10.12.12",
+    "moment": "^2.29.4",
     "next": "13.3.0",
     "nextjs-progressbar": "^0.0.16",
     "postcss": "8.4.21",

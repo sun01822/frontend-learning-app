@@ -7,7 +7,6 @@ import StoreProvider from "@/redux/storeProvidor";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
-  console.log("Router: ", router.pathname);
   return (
     <StoreProvider>
       <ClerkProvider>

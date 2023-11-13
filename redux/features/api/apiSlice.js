@@ -19,4 +19,4 @@ export const apiSlice = createApi({
   endpoints: () => ({}),
 });
 
-export const { useGetUserQuery } = apiSlice;
+// export const { useGetUserQuery } = apiSlice;
