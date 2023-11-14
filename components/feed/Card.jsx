@@ -44,10 +44,10 @@ const Card = ({ problem }) => {
               Details <AiOutlineSend />
             </button>
           </Link>
-          <p className="flex gap-2 text-primary items-center">
+          {/* <p className="flex gap-2 text-primary items-center">
             <AiOutlineStar /> Interested
             <span className="font-semibold">9</span>
-          </p>
+          </p> */}
         </div>
       </div>
 
