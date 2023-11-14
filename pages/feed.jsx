@@ -2,8 +2,12 @@ import Filter from "@/components/feed/Filter";
 import Problems from "@/components/feed/Problems";
 import Search from "@/components/feed/Search";
 import React from "react";
-
+import { useGetAllProblemsQuery } from "@/redux/features/problems/problemApi";
 const Feed = () => {
+  const { data, error } = useGetAllProblemsQuery(null);
+
+  if (error) console.log("Login: ", error);
+
   return (
     <div>
       <Search />
@@ -12,7 +16,7 @@ const Feed = () => {
           <Filter />
         </div>
         <div className="col-span-12 md:col-span-8">
-          <Problems />
+          {data && <Problems problems={data.data} />}
         </div>
       </div>
     </div>
