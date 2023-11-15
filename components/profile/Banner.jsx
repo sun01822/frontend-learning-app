@@ -1,27 +1,26 @@
-import Image from "next/image";
-import Rakib from "../../public/images/rakib.jpg";
 import Link from "next/link";
 import { AiFillEdit } from "react-icons/ai";
+import { useSelector } from "react-redux";
 
 const Banner = () => {
+  const { User } = useSelector((state) => state.user);
   return (
     <div className="flex flex-wrap gap-3 items-center justify-between bg-white mt-2 p-4 lg:p-10 rounded-lg">
       <div className="flex gap-3">
-        <Image
-          className="w-[90px] h-[90px] rounded-full border-2 border-primary"
-          src={Rakib}
+        <img
+          className="w-[100px] h-[100px] p-1 rounded-full border-2 border-primary"
+          src={User?.image || "/default/avatar.jpg"}
           alt="Rakib"
         />
         <div>
           <h3 className="text-xl font-semibold flex items-center">
-            Md.Rakibuzzaman &nbsp;
+            {User?.name} &nbsp;
           </h3>
-          <p className="text-sm pt-1">Web Developer</p>
-          <p className="text-sm pt-1">Varendra University</p>
+          <p className="text-sm pt-1">{User?.workingAs}</p>
+          <p className="text-sm pt-1">{User?.companyName}</p>
           <Link
-            href="/setting/234"
-            className="tooltip btn mt-3 flex items-center gap-2"
-            data-tip="Edit Profile"
+            href={`/setting/${User?._id}}`}
+            className="btn btn-sm mt-3 flex items-center gap-2"
           >
             <AiFillEdit />
             Edit Profile

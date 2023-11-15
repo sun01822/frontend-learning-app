@@ -2,20 +2,9 @@
 import { AiOutlineStar, AiOutlineSend } from "react-icons/ai";
 import Link from "next/link";
 import moment from "moment";
-import { useGetAllCommentsOnPostQuery } from "@/redux/features/comment/commentApi";
-import { useRouter } from "next/router";
 
 // Functional component Card
 const Card = ({ problem }) => {
-  // Fetch comments for the current post using the useGetAllCommentsOnPostQuery hook
-   // Get the problem ID from the URL
-   const router = useRouter();
-   const { id } = router.query;
- 
-   // Fetch comments for the current post using the useGetAllCommentsOnPostQuery hook
-   const { data: comments, isLoading, isError } = useGetAllCommentsOnPostQuery({ postId: id });
- 
-  // const { data: comments, isLoading, isError } = useGetAllCommentsOnPostQuery({ postId: problem?._id });
   const Topics = ["Programming", "Javascript", "Website"];
 
   return (
@@ -57,10 +46,10 @@ const Card = ({ problem }) => {
               Details <AiOutlineSend />
             </button>
           </Link>
-          <p className="flex gap-2 text-primary items-center">
+          {/* <p className="flex gap-2 text-primary items-center">
             <AiOutlineStar /> Interested
             <span className="font-semibold">9</span>
-          </p>
+          </p> */}
         </div>
       </div>
 
@@ -69,29 +58,6 @@ const Card = ({ problem }) => {
           <p key={index}>#{data}</p>
         ))}
       </div>
-
-      {/* Comments Section */}
-      <div className="mt-4">
-        <h3 className="text-lg font-semibold mb-2">Comments</h3>
-        {isLoading ? (
-          <p>Loading comments...</p>
-        ) : isError ? (
-          <p>Error loading comments</p>
-        ) : (
-          <ul>
-            {comments.map((comment) => (
-              <li key={comment._id}>
-                {/* Display each comment */}
-                <div>
-                  <p>{comment.proposal}</p>
-                  <p>Price: {comment.price}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-
     </div>
   );
 };
