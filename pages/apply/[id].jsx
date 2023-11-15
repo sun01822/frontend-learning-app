@@ -4,9 +4,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useGetProblemByIdQuery } from "@/redux/features/problems/problemApi";
 import moment from "moment";
+import Proposal from "@/components/apply/Proposal";
 
 const Apply = () => {
   const router = useRouter();
+
+  const { id } = router.query;
+
+
 
   const { data: problem, error } = useGetProblemByIdQuery(router.query.id, {
     refetchOnMountOrArgChange: true,
@@ -79,12 +84,14 @@ const Apply = () => {
             </Link>
             <Link href="/feed">
               <button className="btn btn-sm gap-2 bg-gray-700 hover:bg-gray-800 text-white rounded-full px-3">
-                Cancle
+                Cancel
               </button>
             </Link>
           </div>
         </div>
       </form>
+      {/* Proposal call */}
+      <Proposal id={id}/>
     </div>
   );
 };
