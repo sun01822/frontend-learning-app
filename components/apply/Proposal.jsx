@@ -6,7 +6,7 @@ const Proposal = ({ id }) => {
     { postId: id },
     { refetchOnMountOrArgChange: true }
   );
-  // Proposal Started
+  // Proposal Started now
   return (  
     <div className="mt-4 space-y-4">
       <h2 className="text-2xl font-semibold mt-16 mb-4">Proposals</h2>
