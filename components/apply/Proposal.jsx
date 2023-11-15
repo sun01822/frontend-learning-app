@@ -2,14 +2,14 @@ import { useGetAllCommentsOnPostQuery } from "@/redux/features/comment/commentAp
 import moment from "moment";
 
 const Proposal = ({ id }) => {
-  const { data: comments, isError, error } = useGetAllCommentsOnPostQuery(
+  const { data: comments, isError } = useGetAllCommentsOnPostQuery(
     { postId: id },
     { refetchOnMountOrArgChange: true }
   );
 
   return (
-    <div className="mt-4 space-y-4">
-      <h2 className="text-2xl font-semibold mt-16 mb-4">Proposals</h2>
+    <div className="space-y-4">
+      <h2 className="text-2xl font-semibold mb-4">Proposals</h2>
 
       {isError && <p className="text-red-500">Error loading proposals</p>}
 
@@ -20,7 +20,7 @@ const Proposal = ({ id }) => {
       {comments && comments.length > 0 && (
         <ul>
           {comments.map((comment) => (
-            <li key={comment._id} className="border p-4 rounded-md">
+            <li key={comment._id} className="border p-4 rounded-md mt-2">
               <div className="flex justify-between items-center mb-2">
                 <div className="flex items-center">
                   <img

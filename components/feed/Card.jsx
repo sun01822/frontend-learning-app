@@ -37,7 +37,9 @@ const Card = ({ problem }) => {
         </div>
       </div>
       {/* Problem */}
-      <h2 className="text-xl font-semibold mt-3">{problem?.title}</h2>
+      <Link href={`/apply/${problem?._id}`}>
+        <h2 className="text-xl font-semibold mt-3">{problem?.title}</h2>
+      </Link>
 
       <div className="mt-4">
         <div className="flex items-center gap-4">
