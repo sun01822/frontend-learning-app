@@ -5,10 +5,38 @@ export const userApi = apiSlice.injectEndpoints({
     // get all User
     getAllUser: builder.query({
       query: () => ({
-        url: `/api/users`,
+        url: `/user`,
       }),
+    }),
+
+    // Login User
+    loginUser: builder.mutation({
+      query: (data) => ({
+        url: "/user/login",
+        method: "POST",
+        body: data,
+      }),
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        try {
+          const result = await queryFulfilled;
+          localStorage.setItem("token", JSON.stringify(result.data.token));
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      providesTags: ["User"],
+    }),
+
+    // update user
+    updateUser: builder.mutation({
+      query: ({ data, user_id }) => ({
+        url: `/user/${user_id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: ["User"],
     }),
   }),
 });
 
-export const {} = userApi;
+export const { useLoginUserMutation, useUpdateUserMutation } = userApi;

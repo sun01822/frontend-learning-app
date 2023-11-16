@@ -7,6 +7,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { BsClipboard } from "react-icons/bs";
 import { BiMessageRounded } from "react-icons/bi";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 import {
   AiOutlinePlus,
@@ -23,44 +24,10 @@ import { CgProfile } from "react-icons/cg";
 import { useUser } from "@clerk/nextjs";
 import { SignOutButton } from "@clerk/nextjs";
 
-const DropLinks = [
-  {
-    url: "/",
-    icon: <AiOutlineHome />,
-    text: "Home",
-  },
-  {
-    url: "/post/125",
-    icon: <AiOutlinePlus />,
-    text: "Upload Problem",
-  },
-  {
-    url: "/feed",
-    icon: <MdOutlineWork />,
-    text: "Jobs",
-  },
-  {
-    url: "/profile/rakib38",
-    icon: <BsPersonCircle />,
-    text: "Profile",
-  },
-  {
-    url: "/setting/123",
-    icon: <AiOutlineSetting />,
-    text: "Setting",
-  },
-  {
-    url: "/",
-    icon: <AiOutlineLogout />,
-    text: "Log out",
-  },
-];
-
 const Navbar = () => {
+  const { User } = useSelector((state) => state.user);
   const { isSignedIn, user } = useUser();
   const isLoggedIn = false;
-
-  console.log("User: ", user);
 
   return (
     <div className="w-full bg-white">
@@ -92,16 +59,16 @@ const Navbar = () => {
           {/* user */}
           <div className="flex gap-3 items-center">
             <div className="text-right">
-              {isSignedIn ? (
+              {User ? (
                 <div className="dropdown dropdown-hover dropdown-end">
                   <label tabIndex={0} className="m-1 flex gap-2 items-center">
                     <div>
-                      <span className="font-semibold">{user.fullName}</span>
+                      <span className="font-semibold">{User?.name}</span>
                       <p className="text-sm">৳ 1K BDT</p>
                     </div>
                     <img
-                      className="w-[40px] rounded-full border"
-                      src={user.imageUrl}
+                      className="w-[45px] rounded-full"
+                      src={User?.image || "/default/avatar.jpg"}
                       alt="Image"
                     />
                   </label>
@@ -110,7 +77,7 @@ const Navbar = () => {
                     className="dropdown-content z-[1] menu p-2 shadow border bg-base-100 rounded-lg w-52"
                   >
                     <li>
-                      <Link href="/profile/rakib38" className="gap-2">
+                      <Link href={`/profile/${User?._id}`} className="gap-2">
                         <CgProfile /> Profile
                       </Link>
                     </li>

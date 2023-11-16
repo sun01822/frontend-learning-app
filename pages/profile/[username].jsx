@@ -4,8 +4,8 @@ import Skills from "@/components/profile/Skills";
 import { useRouter } from "next/router";
 
 const Profile = () => {
-  const routes = useRouter();
-  console.log(routes.query)
+  // const routes = useRouter();
+  // console.log(routes.query);
   return (
     <div>
       <Banner />
