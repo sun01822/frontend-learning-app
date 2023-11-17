@@ -163,8 +163,12 @@ import React from "react";
 import { useGetAllCategoriesQuery } from "@/redux/features/category/categoryApi";
 import { useGetAllsubCategoriesQuery } from "@/redux/features/subcategory/subcategoryApi";
 import { useForm, Controller } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { useCreateProblemMutation } from "@/redux/features/problems/problemApi"; 
 
 const UploadProblem = () => {
+  const [ createProblem ] = useCreateProblemMutation();
+  const { User } = useSelector((state) => state.user);
   const {
     register,
     handleSubmit,
@@ -184,24 +188,34 @@ const UploadProblem = () => {
     setValue("subcategory", ""); 
   };
 
-  const onSubmit = (data) => {
-    const selectedCategoryId = data.category;
-    const selectedCategory = categoriesData.find((cat) => cat._id === selectedCategoryId);
+  const onSubmit = async (data) => {
+    try {
+      const selectedCategoryId = data.category;
+      const selectedCategory = categoriesData.find((cat) => cat._id === selectedCategoryId);
 
-    const modifiedData = {
-      ...data,
-      category: selectedCategory ? selectedCategory.category_name : '',
-    };
+      const modifiedData = {
+        ...data,
+        category: selectedCategory ? selectedCategory.category_name : '',
+        user: User._id,
+      
+      };
+      const response = await createProblem(modifiedData);
+    
+      // Log the modified data
+      console.log("Collected Data:", modifiedData);
+      console.log("Res", response);
 
-    // Log the modified data
-    console.log("Collected Data:", modifiedData);
-
-    // Reset form fields
-    setValue("title", "");
-    setValue("description", "");
-    setValue("category", "");
-    setValue("subcategory", "");
-    setValue("budget", "");
+      // Reset form fields
+      setValue("title", "");
+      setValue("description", "");
+      setValue("category", "");
+      setValue("subcategory", "");
+      setValue("budget", "");
+    }
+    catch (error) {
+      // Handle errors, e.g., display an error message to the user
+      console.error('Error creating problem:', error.message);
+    }
   };
 
   return (
