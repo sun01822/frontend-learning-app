@@ -10,6 +10,8 @@ import { useState, useEffect } from "react"; // Import useState
 import { useSelector } from "react-redux";
 import { useCreateCommentMutation } from "@/redux/features/comment/commentApi";
 
+// Updated
+
 const Apply = () => {
   const { User } = useSelector((state) => state.user);
   const router = useRouter();
