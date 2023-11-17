@@ -28,7 +28,7 @@
     @apply font-bold text-green-500 underline;
   }
 
-    .selected {
+    .selectShape {
   
       @apply border-red-600 ring-offset-2 ring-2;
       @apply text-xs font-bold text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-1 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-3 text-center mt-1;

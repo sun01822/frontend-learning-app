@@ -17,6 +17,7 @@ const Apply = () => {
   const [price, setPrice] = useState(0);
 
   const { id } = router.query;
+
   const { data: problem, error } = useGetProblemByIdQuery(router.query.id, {
     refetchOnMountOrArgChange: true,
   });
@@ -109,6 +110,10 @@ const Apply = () => {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <h3 className="font-semibold mb-2 mt-4">Price</h3>
+          ></textarea>
+          <h3 className="font-semibold mb-2 mt-4">
+            Price <span>(Max 150tk)</span>
+          </h3>
           <input
             type="number"
             placeholder="tk"
@@ -140,6 +145,8 @@ const Apply = () => {
           {/* Include Proposal component here */}
           <Proposal id={id} />
         </div>
+      <div className="bg-white rounded-md p-5 mt-5">
+        <Proposal id={id} />
       </div>
     </>
   );
