@@ -6,9 +6,10 @@ const Proposal = ({ id }) => {
     { postId: id },
     { refetchOnMountOrArgChange: true }
   );
-
-  return (
-    <div className="space-y-4">
+  
+  // Proposal Started now
+  return (  
+    <div className="mt-4 space-y-4">
       <h2 className="text-2xl font-semibold mb-4">Proposals</h2>
 
       {isError && <p className="text-red-500">Error loading proposals</p>}
