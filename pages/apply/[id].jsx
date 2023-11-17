@@ -28,6 +28,8 @@ const Apply = () => {
     useCreateCommentMutation();
   // Move the handleApplyJob inside the component
 
+  console.log("Error: ", creatingError);
+
   const handleApplyJob = (e) => {
     e.preventDefault();
     if (!User) {
@@ -60,7 +62,6 @@ const Apply = () => {
     <>
       <div className="bg-white border-b py-6 px-5 rounded-lg mt-2">
         {/* Header */}
-        <Toaster />
         <div className="flex flex-wrap gap-2 justify-between">
           <div className="flex items-center gap-2">
             <Link href="/profile/rakib38">
@@ -101,53 +102,42 @@ const Apply = () => {
         <hr />
         <br />
 
-        <form onSubmit={handleApplyJob}>
+        <form onClick={handleApplyJob}>
           <h3 className="font-semibold mb-2">
             Write Description <span>(21/2000)</span>
           </h3>
           <textarea
+            onChange={(e) => setDescription(e.target.value)}
             placeholder="About your experience"
             className="textarea textarea-sm  rounded-lg w-full bg-base-200 focus:outline-none"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
-          <h3 className="font-semibold mb-2 mt-4">Price</h3>
           ></textarea>
           <h3 className="font-semibold mb-2 mt-4">
             Price <span>(Max 150tk)</span>
           </h3>
           <input
             type="number"
+            onChange={(e) => setPrice(e.target.value)}
             placeholder="tk"
             className="bg-base-200 focus:outline-none rounded-md py-2 px-3"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
           />
           <div className="mt-10">
             <div className="flex items-center gap-4">
-              <button
-                className="btn btn-sm gap-2 btn_sar text-white rounded-full px-3"
-                type="submit" // Call handleApplyJob on button click
-              >
-                Apply Job <AiOutlineSend />
-              </button>
-              <Link
-                href="/feed"
-                className="btn btn-sm gap-2 bg-gray-700 hover:bg-gray-800 text-white rounded-full px-3"
-              >
-                Cancel
+              <Link href="#">
+                <button className="btn btn-sm gap-2 btn_sar text-white rounded-full px-3">
+                  Apply Job <AiOutlineSend />
+                </button>
+              </Link>
+              <Link href="/feed">
+                <button className="btn btn-sm gap-2 bg-gray-700 hover:bg-gray-800 text-white rounded-full px-3">
+                  Cancel
+                </button>
               </Link>
             </div>
           </div>
         </form>
       </div>
       {/* Proposal call */}
-      <div className="mt-8">
-        <div className="bg-white border rounded-lg p-4">
-          {/* Include Proposal component here */}
-          <Proposal id={id} />
-        </div>
-      <div className="bg-white rounded-md p-5 mt-5">
+      <div className="bg-white rounded-md p-5 mt-3">
         <Proposal id={id} />
       </div>
     </>
