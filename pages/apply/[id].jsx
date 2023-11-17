@@ -28,8 +28,6 @@ const Apply = () => {
     useCreateCommentMutation();
   // Move the handleApplyJob inside the component
 
-  console.log("Error: ", creatingError);
-
   const handleApplyJob = (e) => {
     e.preventDefault();
     if (!User) {
@@ -52,6 +50,8 @@ const Apply = () => {
   useEffect(() => {
     if (isSuccess) {
       toast.success("Proposal send successfully");
+      setDescription("");
+      setPrice(0);
     }
     if (creatingError) {
       toast.error("Sending proposal failed");
@@ -102,12 +102,13 @@ const Apply = () => {
         <hr />
         <br />
 
-        <form onClick={handleApplyJob}>
+        <form onSubmit={handleApplyJob}>
           <h3 className="font-semibold mb-2">
             Write Description <span>(21/2000)</span>
           </h3>
           <textarea
             onChange={(e) => setDescription(e.target.value)}
+            value={description}
             placeholder="About your experience"
             className="textarea textarea-sm  rounded-lg w-full bg-base-200 focus:outline-none"
           ></textarea>
@@ -117,16 +118,19 @@ const Apply = () => {
           <input
             type="number"
             onChange={(e) => setPrice(e.target.value)}
+            value={price}
             placeholder="tk"
             className="bg-base-200 focus:outline-none rounded-md py-2 px-3"
           />
           <div className="mt-10">
             <div className="flex items-center gap-4">
-              <Link href="#">
-                <button className="btn btn-sm gap-2 btn_sar text-white rounded-full px-3">
-                  Apply Job <AiOutlineSend />
-                </button>
-              </Link>
+              <button
+                type="submit"
+                className="btn btn-sm gap-2 btn_sar text-white rounded-full px-3"
+              >
+                Apply Job <AiOutlineSend />
+              </button>
+
               <Link href="/feed">
                 <button className="btn btn-sm gap-2 bg-gray-700 hover:bg-gray-800 text-white rounded-full px-3">
                   Cancel
