@@ -46,7 +46,7 @@ const Apply = () => {
     createComment(commentData);
   };
 
-  // Handle response
+  // Handle error and success
   useEffect(() => {
     if (isSuccess) {
       toast.success("Proposal send successfully");
