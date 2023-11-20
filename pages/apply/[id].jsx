@@ -46,10 +46,12 @@ const Apply = () => {
     createComment(commentData);
   };
 
-  // Handle response
+  // Handle error and success
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Proposal sent successfully");
+      toast.success("Proposal send successfully");
+      setDescription("");
+      setPrice(0);
     }
     if (creatingError) {
       toast.error("Sending proposal failed");
@@ -60,7 +62,6 @@ const Apply = () => {
     <>
       <div className="bg-white border-b py-6 px-5 rounded-lg mt-2">
         {/* Header */}
-        <Toaster />
         <div className="flex flex-wrap gap-2 justify-between">
           <div className="flex items-center gap-2">
             <Link href="/profile/rakib38">
@@ -106,6 +107,8 @@ const Apply = () => {
             Write Description <span>(21/2000)</span>
           </h3>
           <textarea
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
             placeholder="About your experience"
             className="textarea textarea-sm  rounded-lg w-full bg-base-200 focus:outline-none"
             value={description}
@@ -114,24 +117,24 @@ const Apply = () => {
           <h3 className="font-semibold mb-2 mt-4">Price</h3>
           <input
             type="number"
+            onChange={(e) => setPrice(e.target.value)}
+            value={price}
             placeholder="tk"
             className="bg-base-200 focus:outline-none rounded-md py-2 px-3"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
           />
           <div className="mt-10">
             <div className="flex items-center gap-4">
               <button
+                type="submit"
                 className="btn btn-sm gap-2 btn_sar text-white rounded-full px-3"
-                type="submit" // Call handleApplyJob on button click
               >
                 Apply Job <AiOutlineSend />
               </button>
-              <Link
-                href="/feed"
-                className="btn btn-sm gap-2 bg-gray-700 hover:bg-gray-800 text-white rounded-full px-3"
-              >
-                Cancel
+
+              <Link href="/feed">
+                <button className="btn btn-sm gap-2 bg-gray-700 hover:bg-gray-800 text-white rounded-full px-3">
+                  Cancel
+                </button>
               </Link>
             </div>
           </div>

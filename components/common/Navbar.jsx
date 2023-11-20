@@ -87,7 +87,7 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link href="/utility/whiteboard" className="gap-2">
+                      <Link href="/utility/Whiteboard" className="gap-2">
                         <BsClipboard /> Whiteboard
                       </Link>
                     </li>
