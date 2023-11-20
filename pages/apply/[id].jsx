@@ -142,7 +142,7 @@ const Apply = () => {
       </div>
       {/* Proposal call */}
       <div className="bg-white rounded-md p-5 mt-3">
-        <Proposal id={id} />
+        <Proposal id={id} learner={problem?.user} />
       </div>
     </>
   );
