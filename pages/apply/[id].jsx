@@ -49,7 +49,7 @@ const Apply = () => {
   // Handle response
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Proposal send successfully");
+      toast.success("Proposal sent successfully");
     }
     if (creatingError) {
       toast.error("Sending proposal failed");
@@ -112,10 +112,6 @@ const Apply = () => {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <h3 className="font-semibold mb-2 mt-4">Price</h3>
-          ></textarea>
-          <h3 className="font-semibold mb-2 mt-4">
-            Price <span>(Max 150tk)</span>
-          </h3>
           <input
             type="number"
             placeholder="tk"
@@ -147,8 +143,6 @@ const Apply = () => {
           {/* Include Proposal component here */}
           <Proposal id={id} />
         </div>
-      <div className="bg-white rounded-md p-5 mt-5">
-        <Proposal id={id} />
       </div>
     </>
   );
