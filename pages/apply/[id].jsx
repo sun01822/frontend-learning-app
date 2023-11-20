@@ -107,8 +107,6 @@ const Apply = () => {
             Write Description <span>(21/2000)</span>
           </h3>
           <textarea
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
             placeholder="About your experience"
             className="textarea textarea-sm  rounded-lg w-full bg-base-200 focus:outline-none"
             value={description}
