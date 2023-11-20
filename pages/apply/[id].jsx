@@ -1,13 +1,22 @@
 import { AiOutlineSend } from "react-icons/ai";
+import toast, { Toaster } from "react-hot-toast";
 import Rating from "@/components/common/Rating";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useGetProblemByIdQuery } from "@/redux/features/problems/problemApi";
 import moment from "moment";
 import Proposal from "@/components/apply/Proposal";
+import { useState, useEffect } from "react"; // Import useState
+import { useSelector } from "react-redux";
+import { useCreateCommentMutation } from "@/redux/features/comment/commentApi";
+
+// Updated
 
 const Apply = () => {
+  const { User } = useSelector((state) => state.user);
   const router = useRouter();
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
 
   const { id } = router.query;
 
@@ -15,7 +24,40 @@ const Apply = () => {
     refetchOnMountOrArgChange: true,
   });
 
-  const Topics = ["Programming", "Javascript", "Website"];
+  const [createComment, { error: creatingError, isSuccess }] =
+    useCreateCommentMutation();
+  // Move the handleApplyJob inside the component
+
+  const handleApplyJob = (e) => {
+    e.preventDefault();
+    if (!User) {
+      // User is not logged in, show a toast message
+      toast.error("You need to be logged in to apply for the job");
+      return;
+    }
+    // Assuming userId and postId are available
+    const commentData = {
+      userId: User._id, // Replace with the actual user id
+      postId: id, // Replace with the actual post id
+      proposal: description,
+      price: price,
+    };
+    // Call the mutation to create a comment
+    createComment(commentData);
+  };
+
+  // Handle error and success
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Proposal send successfully");
+      setDescription("");
+      setPrice(0);
+    }
+    if (creatingError) {
+      toast.error("Sending proposal failed");
+    }
+  }, [isSuccess, creatingError]);
+
   return (
     <>
       <div className="bg-white border-b py-6 px-5 rounded-lg mt-2">
@@ -60,11 +102,13 @@ const Apply = () => {
         <hr />
         <br />
 
-        <form>
+        <form onSubmit={handleApplyJob}>
           <h3 className="font-semibold mb-2">
             Write Description <span>(21/2000)</span>
           </h3>
           <textarea
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
             placeholder="About your experience"
             className="textarea textarea-sm  rounded-lg w-full bg-base-200 focus:outline-none"
           ></textarea>
@@ -73,16 +117,20 @@ const Apply = () => {
           </h3>
           <input
             type="number"
+            onChange={(e) => setPrice(e.target.value)}
+            value={price}
             placeholder="tk"
             className="bg-base-200 focus:outline-none rounded-md py-2 px-3"
           />
           <div className="mt-10">
             <div className="flex items-center gap-4">
-              <Link href="#">
-                <button className="btn btn-sm gap-2 btn_sar text-white rounded-full px-3">
-                  Apply Job <AiOutlineSend />
-                </button>
-              </Link>
+              <button
+                type="submit"
+                className="btn btn-sm gap-2 btn_sar text-white rounded-full px-3"
+              >
+                Apply Job <AiOutlineSend />
+              </button>
+
               <Link href="/feed">
                 <button className="btn btn-sm gap-2 bg-gray-700 hover:bg-gray-800 text-white rounded-full px-3">
                   Cancel
@@ -93,7 +141,7 @@ const Apply = () => {
         </form>
       </div>
       {/* Proposal call */}
-      <div className="bg-white rounded-md p-5 mt-5">
+      <div className="bg-white rounded-md p-5 mt-3">
         <Proposal id={id} />
       </div>
     </>

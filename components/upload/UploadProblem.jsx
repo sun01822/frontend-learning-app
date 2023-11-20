@@ -1,226 +1,159 @@
 import Link from "next/link";
 import React from "react";
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import toast, { Toaster } from "react-hot-toast";
+import { useForm, Controller } from "react-hook-form";
+import { useCreateProblemMutation } from "@/redux/features/problems/problemApi"; 
+import { useGetAllCategoriesQuery } from "@/redux/features/category/categoryApi";
+import { useGetAllsubCategoriesQuery } from "@/redux/features/subcategory/subcategoryApi";
+
 
 const UploadProblem = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [subcategory, setSubcategory] = useState("");
-  const [budget, setBudget] = useState("");
-  const [errors, setErrors] = useState({});
+  const [ createProblem ] = useCreateProblemMutation();
+  const { User } = useSelector((state) => state.user);
+  const {
+    register,
+    handleSubmit,
+    control,
+    setValue,
+    formState: { errors },
+    watch,
+  } = useForm();
 
-  const categories = [
-    {
-      name: "Computer Science",
-      subcategories: [
-        "Algorithms",
-        "Data Structures",
-        "Database Management",
-        "Machine Learning",
-      ],
-    },
-    {
-      name: "Electrical Engineering",
-      subcategories: [
-        "Circuit Design",
-        "Power Systems",
-        "Digital Signal Processing",
-        "Control Systems",
-      ],
-    },
-    {
-      name: "Math",
-      subcategories: [
-        "Calculus",
-        "Linear Algebra",
-        "Probability",
-        "Statistics",
-      ],
-    },
-    {
-      name: "Physics",
-      subcategories: [
-        "Classical Mechanics",
-        "Electromagnetism",
-        "Quantum Mechanics",
-        "Thermodynamics",
-      ],
-    },
-    {
-      name: "Chemistry",
-      subcategories: [
-        "Organic Chemistry",
-        "Inorganic Chemistry",
-        "Physical Chemistry",
-        "Analytical Chemistry",
-      ],
-    },
-    {
-      name: "Website Hosting",
-      subcategories: [
-        "Shared Hosting",
-        "Virtual Private Server (VPS)",
-        "Dedicated Hosting",
-        "Cloud Hosting",
-      ],
-    },
-    {
-      name: "Web Development",
-      subcategories: [
-        "Front-end Development",
-        "Back-end Development",
-        "Full-stack Development",
-        "Responsive Design",
-      ],
-    },
-    {
-      name: "Graphic Design",
-      subcategories: [
-        "Logo Design",
-        "UI/UX Design",
-        "Print Design",
-        "Illustration",
-      ],
-    },
-    {
-      name: "Marketing",
-      subcategories: [
-        "Digital Marketing",
-        "Social Media Marketing",
-        "Content Marketing",
-        "Email Marketing",
-      ],
-    },
-    {
-      name: "Others",
-      subcategories: ["General Help", "Miscellaneous", "Custom Category"],
-    },
-  ];
+  // Fetch categories, subcategories
+  const { data: categoriesData } = useGetAllCategoriesQuery();
+  const { data: subcategoriesData } = useGetAllsubCategoriesQuery();
 
-  const handleCategoryChange = (e) => {
-    const selectedCategory = e.target.value;
-    setCategory(selectedCategory);
-    setSubcategory(""); // Reset subcategory when changing category
+  const handleCategoryChange = (selectedCategory) => {
+    setValue("category", selectedCategory);
+    setValue("subcategory", ""); 
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
+    try {
+      const selectedCategoryId = data.category;
+      const selectedCategory = categoriesData.find((cat) => cat._id === selectedCategoryId);
 
-    // Form validation
-    let errors = {};
-    if (!title) {
-      errors.title = "Title is required";
-    }
-    if (!description) {
-      errors.description = "Description is required";
-    }
-    if (!category) {
-      errors.category = "Category is required";
-    }
-    if (!subcategory) {
-      errors.subcategory = "Subcategory is required";
-    }
-    if (!budget) {
-      errors.budget = "Budget is required";
-    }
+      const modifiedData = {
+        ...data,
+        category: selectedCategory ? selectedCategory.category_name : '',
+        user: User._id,
+      
+      };
+      // const { category, ...dataToSend } = modifiedData;
+      const response = await createProblem(modifiedData);
+    
+      console.log("Collected Data:", modifiedData);
+      console.log("Res", response);
+      if (response && response.data && response.data.success) {
+        // Show success toast
+        toast.success(response.data.message || 'Problem posted successfully');
 
-    if (Object.keys(errors).length > 0) {
-      setErrors(errors);
-      return;
+        // Reset form fields
+        setValue('title', '');
+        setValue('description', '');
+        setValue('category', '');
+        setValue('subcategory', '');
+        setValue('budget', '');
+      } else {
+        // Show error toast if the post was not successful
+        toast.error(response?.data?.message || 'Error posting the problem');
+      }
+    } catch (error) {
+      
+      //console.error('Error posting the problem:', error.message);
+      // Show error toast
+      toast.error('Error posting the problem');
     }
-
-    // Form submission logic
-    // ...
-
-    // Reset form fields
-    setTitle("");
-    setDescription("");
-    setCategory("");
-    setSubcategory("");
-    setBudget("");
-    setErrors({});
   };
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       className="bg-white border-b py-6 px-5 rounded-lg mt-2"
     >
       <h1 className="secondary_title uppercase">Add Problem Title</h1>
       <br />
       <textarea
+        {...register("title", { required: "Title is required" })}
         id="title"
         rows="2"
         className="textarea textarea-bordered w-full"
         placeholder="Need help to host my website ..."
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
       />
-      {errors.title && <span className="text-red-500">{errors.title}</span>}
+      {errors.title && (
+        <span className="text-red-500">{errors.title.message}</span>
+      )}
       <br />
       <br />
       <p className="mb-3">
         The more context you provide, the better our experts can help you.
       </p>
       <textarea
+        {...register("description", { required: "Description is required" })}
         id="description"
         rows="4"
         className="textarea textarea-bordered w-full"
         placeholder="Provide more context here..."
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
       />
       {errors.description && (
-        <span className="text-red-500">{errors.description}</span>
+        <span className="text-red-500">{errors.description.message}</span>
       )}
       <br /> <br />
       <div className="flex flex-col md:flex-row justify-between mt-4">
+        <Toaster />
         <select
+          {...register("category", { required: "Category is required" })}
           id="category"
           className="select select-bordered"
-          value={category}
-          onChange={handleCategoryChange}
+          onChange={(e) => handleCategoryChange(e.target.value)}
         >
           <option value="">Choose a category</option>
-          {categories.map((cat) => (
-            <option key={cat.name} value={cat.name}>
-              {cat.name}
-            </option>
-          ))}
+          {categoriesData &&
+            categoriesData.map((cat) => (
+              <option key={cat._id} value={cat._id}>
+                {cat.category_name}
+              </option>
+            ))}
         </select>
         {errors.category && (
-          <span className="text-red-500">{errors.category}</span>
+          <span className="text-red-500">{errors.category.message}</span>
         )}
-        {category && (
-          <select
-            id="subcategory"
-            className="select select-bordered ml-2"
-            value={subcategory}
-            onChange={(e) => setSubcategory(e.target.value)}
-          >
-            <option value="">Choose a subcategory</option>
-            {categories
-              .find((cat) => cat.name === category)
-              .subcategories.map((subcat) => (
-                <option key={subcat} value={subcat}>
-                  {subcat}
-                </option>
-              ))}
-          </select>
+        {watch("category") && (
+          <Controller
+            control={control}
+            name="subcategory"
+            render={({ field }) => (
+              <select
+                {...field}
+                className="select select-bordered ml-2"
+              >
+                <option value="">Choose a subcategory</option>
+                {subcategoriesData &&
+                  subcategoriesData
+                    .filter((subcat) => subcat.categoryId === watch("category"))
+                    .map((subcat) => (
+                      <option key={subcat._id} value={subcat.name}>
+                        {subcat.name}
+                      </option>
+                    ))}
+              </select>
+            )}
+          />
         )}
         {errors.subcategory && (
-          <span className="text-red-500">{errors.subcategory}</span>
+          <span className="text-red-500">{errors.subcategory.message}</span>
         )}
         <input
+          {...register("budget", { required: "Budget is required" })}
           type="number"
           id="budget"
           className="input input-bordered"
           placeholder="Enter budget (Taka)"
-          value={budget}
-          onChange={(e) => setBudget(e.target.value)}
         />
-        {errors.budget && <span className="text-red-500">{errors.budget}</span>}
+        {errors.budget && (
+          <span className="text-red-500">{errors.budget.message}</span>
+        )}
       </div>
       <div className="mt-6 flex justify-end">
         <button type="reset" className="btn_secondary mr-4">
