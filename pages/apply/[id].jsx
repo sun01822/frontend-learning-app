@@ -107,12 +107,14 @@ const Apply = () => {
             Write Description <span>(21/2000)</span>
           </h3>
           <textarea
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
             placeholder="About your experience"
             className="textarea textarea-sm  rounded-lg w-full bg-base-200 focus:outline-none"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
           ></textarea>
-          <h3 className="font-semibold mb-2 mt-4">Price</h3>
+          <h3 className="font-semibold mb-2 mt-4">
+            Price <span>(Max 150tk)</span>
+          </h3>
           <input
             type="number"
             onChange={(e) => setPrice(e.target.value)}
@@ -139,11 +141,8 @@ const Apply = () => {
         </form>
       </div>
       {/* Proposal call */}
-      <div className="mt-8">
-        <div className="bg-white border rounded-lg p-4">
-          {/* Include Proposal component here */}
-          <Proposal id={id} />
-        </div>
+      <div className="bg-white rounded-md p-5 mt-3">
+        <Proposal id={id} learner={problem?.user} />
       </div>
     </>
   );

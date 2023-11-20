@@ -34,7 +34,7 @@ const Navbar = () => {
       {/* main */}
       <div className="max-w-[1100px] px-4 mx-auto py-2 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/">
+        <Link href={User ? "/feed" : "/"}>
           <Image src={Logo} alt="Learning APP" priority />
         </Link>
         {/* Nav Links */}
