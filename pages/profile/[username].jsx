@@ -2,10 +2,11 @@ import Banner from "@/components/profile/Banner";
 import ProblemPosts from "@/components/profile/ProblemPosts";
 import Skills from "@/components/profile/Skills";
 import { useRouter } from "next/router";
-
+import { useSelector } from "react-redux";
 const Profile = () => {
   // const routes = useRouter();
   // console.log(routes.query);
+  const { User } = useSelector((state) => state.user);
   return (
     <div>
       <Banner />
@@ -14,7 +15,7 @@ const Profile = () => {
           <Skills />
         </div>
         <div className="col-span-12 lg:col-span-8">
-          <ProblemPosts />
+          <ProblemPosts userId={User?._id} />
         </div>
       </div>
     </div>

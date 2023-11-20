@@ -15,7 +15,7 @@ export const apiSlice = createApi({
     },
   }),
   keepUnusedDataFor: 600, //600s -> 10 min
-  tagTypes: ["User", "Comments"],
+  tagTypes: ["User", "Comments","Problems"],
   endpoints: () => ({}),
 });
 
