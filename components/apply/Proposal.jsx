@@ -7,6 +7,11 @@ const Proposal = ({ id }) => {
     { refetchOnMountOrArgChange: true }
   );
 
+  const handleApply = (proposalId) => {
+    // Implement your logic for applying to the proposal here
+    console.log(`Applying to proposal with ID: ${proposalId}`);
+  };
+
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-semibold mb-4">Proposals</h2>
@@ -32,9 +37,17 @@ const Proposal = ({ id }) => {
                     {comment.userId.name}
                   </span>
                 </div>
-                <span className="text-lg font-semibold text-green-500">
-                  {comment.price} tk
-                </span>
+                <div className="flex items-center">
+                  <span className="text-lg font-semibold text-green-500">
+                    {comment.price} tk
+                  </span>
+                  <button
+                    className="bg-blue-500 ml-4 btn-xs rounded-full text-white"
+                    onClick={() => handleApply(comment._id)}
+                  >
+                    Apply
+                  </button>
+                </div>
               </div>
               <p className="text-gray-700 mb-2">{comment.proposal}</p>
               <div className="flex justify-between items-center">
