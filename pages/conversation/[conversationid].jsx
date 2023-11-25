@@ -2,6 +2,8 @@
 import { useState, useRef } from "react";
 import { FiSend, FiPaperclip } from "react-icons/fi";
 
+// updating the conversation page
+
 const users = [
   {
     id: 1,
