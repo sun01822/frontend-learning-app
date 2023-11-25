@@ -1,6 +1,6 @@
 // pages/chat.js
-import { useState } from "react";
-import { FiSend } from "react-icons/fi";
+import { useState, useRef } from "react";
+import { FiSend, FiPaperclip } from "react-icons/fi";
 
 const users = [
   {
@@ -40,8 +40,19 @@ const users = [
 
 const Chat = () => {
   const [currentUser, setCurrentUser] = useState(users[0]);
-  // Mock user data for demonstration
+  const fileInputRef = useRef(null);
 
+  const handleFileUpload = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    // Handle the file upload logic (e.g., send the file to the server)
+    console.log("Selected file:", file);
+  };
   return (
     <div className="flex h-screen">
       {/* Chat List go here */}
@@ -88,11 +99,25 @@ const Chat = () => {
         </div>
 
         <div className="flex items-center mt-4">
-          <input
-            type="text"
-            placeholder="Type a message..."
-            className="w-3/4 border border-gray-300 p-2 rounded-l-lg focus:outline-none shadow-md"
-          />
+          <div className="relative w-3/4">
+            <input
+              type="text"
+              placeholder="Type a message..."
+              className="w-full border border-gray-300 p-2 rounded-l-lg focus:outline-none shadow-md"
+            />
+            <div
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer"
+              onClick={handleFileUpload}
+            >
+              <FiPaperclip />
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                style={{ display: "none" }}
+              />
+            </div>
+          </div>
           <button className="w-1/4 ml-1 h-10 bg-green-500 text-white p-2 flex items-center justify-center rounded-r-lg hover:bg-green-600 transition duration-300 ease-in-out shadow-md">
             <span>Send</span>
             <FiSend className="ml-2" />
