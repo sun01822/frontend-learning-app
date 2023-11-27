@@ -14,7 +14,8 @@ const Success = () => {
 
   useEffect(() => {
     if (data) {
-      router.push(`/conversation/${data?.tutor_id}`);
+      console.log("Success data:  ", data);
+      router.push(`/conversation/${data?.transaction_id}`);
     }
   }, [data]);
 

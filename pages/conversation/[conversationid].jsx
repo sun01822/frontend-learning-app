@@ -1,46 +1,22 @@
 // pages/chat.js
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiSend } from "react-icons/fi";
-
-const users = [
-  {
-    id: 1,
-    username: "User 1",
-    profileImage:
-      "https://www.english.com/blog/wp-content/uploads/2020/04/Teaching-online-FAQs-1132x670.jpg", // Replace with actual image URL
-    lastMessage: "Hello there!",
-    isActive: true,
-  },
-  {
-    id: 2,
-    username: "User 2",
-    profileImage:
-      "https://www.english.com/blog/wp-content/uploads/2020/04/Teaching-online-FAQs-1132x670.jpg", // Replace with actual image URL
-    lastMessage: "How are you?",
-    isActive: false,
-  },
-  {
-    id: 3,
-    username: "User 3",
-    profileImage:
-      "https://www.english.com/blog/wp-content/uploads/2020/04/Teaching-online-FAQs-1132x670.jpg", // Replace with actual image URL
-    lastMessage: "How are you?",
-    isActive: true,
-  },
-  {
-    id: 4,
-    username: "User 4",
-    profileImage:
-      "https://www.english.com/blog/wp-content/uploads/2020/04/Teaching-online-FAQs-1132x670.jpg", // Replace with actual image URL
-    lastMessage: "How are you?",
-    isActive: false,
-  },
-  // Add more users as needed
-];
+import { io } from "socket.io-client";
+import { users } from "./data";
+import { useRouter } from "next/router";
 
 const Chat = () => {
   const [currentUser, setCurrentUser] = useState(users[0]);
+  const router = useRouter();
+
+  console.log("router: ", router.query.conversationid);
   // Mock user data for demonstration
+
+  // useEffect(() => {
+  //   const socket = io("http://localhost:8000/user-namepace");
+  //   // Example: sending a message to the server in the user namespace
+  //   socket.emit("chat-message", "Hello, user namespace!");
+  // }, []);
 
   return (
     <div className="flex h-screen">
