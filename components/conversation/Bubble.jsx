@@ -1,11 +1,11 @@
 import React from "react";
 // import { format } from "timeago.js";
 
-const Bubble = ({ message, own }) => {
+const Bubble = ({ chat, own }) => {
   return (
     <div className="bubble">
       <div className="">
-        {message?.image && (
+        {chat?.image && (
           <div className="imageWrapper">
             <img
               src={message.image}
@@ -41,23 +41,19 @@ const Bubble = ({ message, own }) => {
 
         {own ? (
           <div className="chat chat-end flex flex-col">
-            <div className="text-sm pb-1">
-              <span className="font-semibold">Tomal</span>
-              <span className="text-gray-400 pl-2">12 min ago</span>
+            <div className="text-xs pb-1">
+              <span className="font-semibold">{chat?.sender}</span>
+              <span className="text-gray-400 pl-2">{chat?.time}</span>
             </div>
-            <div className="chat-bubble bg-sky-500">
-              It's over Anakin, <br />I have the high ground.
-            </div>
+            <div className="chat-bubble bg-sky-500">{chat?.text}</div>
           </div>
         ) : (
           <div className="chat chat-start flex flex-col">
-            <div className="text-sm pb-1">
-              <span className="font-semibold">Tomal</span>
-              <span className="text-gray-400 pl-2">12 min ago</span>
+            <div className="text-xs pb-1">
+              <span className="font-semibold">{chat?.receiver}</span>
+              <span className="text-gray-400 pl-2">{chat?.time}</span>
             </div>
-            <div className="chat-bubble chat-bubble-primary">
-              It's over Anakin, <br />I have the high ground.
-            </div>
+            <div className="chat-bubble chat-bubble-primary">{chat?.text}</div>
           </div>
         )}
       </div>

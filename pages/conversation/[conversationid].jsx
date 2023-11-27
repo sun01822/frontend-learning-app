@@ -5,56 +5,125 @@ import { io } from "socket.io-client";
 import { useRouter } from "next/router";
 import Sidebar from "@/components/conversation/Sidebar";
 import Bubble from "@/components/conversation/Bubble";
+import { useGetConversationsQuery } from "@/redux/features/payment/paymentApi";
+import { useSelector } from "react-redux";
 
 const Chat = () => {
+  const { User } = useSelector((state) => state.user);
+  const { data: conversations } = useGetConversationsQuery(User?._id);
   const [socket, setSocket] = useState(null);
-  const router = useRouter();
+  const [newMessage, setNewMessage] = useState("");
+  const [currentConversation, setCurrentConversation] = useState(null);
+  const [chats, setChats] = useState([]);
 
-  console.log("router: ", router.query.conversationid);
-  // Mock user data for demonstration
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+    if (!newMessage && !currentConversation) return;
 
-  useEffect(() => {}, [socket]);
+    let receiver =
+      currentConversation.student_id._id === User?._id
+        ? currentConversation.tutor_id
+        : currentConversation.student_id;
+
+    const message = {
+      sender: User?.name,
+      receiverId: receiver?._id,
+      receiver: receiver?.name,
+      text: newMessage,
+      time: Date.now(),
+    };
+
+    socket.emit("sendMessage", message);
+    setChats((prev) => [...prev, message]);
+    setNewMessage("");
+  };
+
+  // Get message from socket.io
+  useEffect(() => {
+    if (socket) {
+      socket.on("getMessage", (message) => {
+        console.log("Message: ", message);
+        setChats((prev) => [...prev, message]);
+      });
+    }
+  }, [socket]);
+
+  // Add new user to socket.io
+  useEffect(() => {
+    if (socket) {
+      if (User) {
+        socket.emit("addUser", User?._id);
+      }
+      socket.on("getUsers", (users) => {
+        console.log("Users: ", users);
+      });
+    }
+  }, [socket, User]);
 
   useEffect(() => {
     setSocket(io("http://localhost:8000"));
   }, []);
 
+  console.log("Chats:", chats);
+
   return (
     <div className="flex h-screen">
       {/* Chat List go here */}
-      <Sidebar />
-      <div className="w-3/4 border-t">
-        <div className="overflow-y-auto h-[calc(100vh-200px)] bg-white p-4 shadow-md">
-          <Bubble />
-          <Bubble own />
-          <Bubble />
-        </div>
+      <Sidebar
+        conversations={conversations}
+        setCurrentConversation={setCurrentConversation}
+      />
+      {currentConversation ? (
+        <div className="w-3/4 border-t">
+          <div className="overflow-y-auto h-[calc(100vh-200px)] bg-white p-8 shadow-md">
+            {chats.length > 0 &&
+              chats.map((chat, index) => (
+                <Bubble
+                  key={index}
+                  own={chat.sender === User?.name}
+                  chat={chat}
+                />
+              ))}
+          </div>
 
-        <div className="flex border-t border-gray-300 overflow-hidden items-center hover:shadow-lg">
-          <label
-            htmlFor="fileselect"
-            className="p-4 text-white cursor-pointer bg-sky-500"
+          {/* FORM */}
+          <form
+            onSubmit={handleSendMessage}
+            className="flex border-t border-gray-300 overflow-hidden items-center hover:shadow-lg"
           >
-            +
-          </label>
-          <input
-            style={{ display: "none" }}
-            type="file"
-            accept="image/png, image/jpg, image/jpeg"
-            // onChange={handleFileChange}
-            id="fileselect"
-          />
-          <input
-            type="text"
-            placeholder="Type a message..."
-            className="w-full p-4 focus:outline-none"
-          />
-          <button className="min-w-[100px] bg-green-500 text-white p-5 flex items-center justify-center hover:bg-green-600 transition duration-300 ease-in-out shadow-md">
-            <span>Send</span>
-            <FiSend className="ml-1" />
-          </button>
+            <label
+              htmlFor="fileselect"
+              className="p-4 text-white cursor-pointer bg-sky-500"
+            >
+              +
+            </label>
+            <input
+              style={{ display: "none" }}
+              type="file"
+              accept="image/png, image/jpg, image/jpeg"
+              // onChange={handleFileChange}
+              id="fileselect"
+            />
+            <input
+              type="text"
+              placeholder="Type a message..."
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              className="w-full p-4 focus:outline-none"
+            />
+            <button className="min-w-[100px] bg-green-500 text-white p-5 flex items-center justify-center hover:bg-green-600 transition duration-300 ease-in-out shadow-md">
+              <span>Send</span>
+              <FiSend className="ml-1" />
+            </button>
+          </form>
         </div>
-      </div>
+      ) : (
+        <div className="w-3/4 border-t flex items-center justify-center">
+          <h1 className="text-2xl font-bold">
+            Select a chat to start messaging
+          </h1>
+        </div>
+      )}
     </div>
   );
 };
