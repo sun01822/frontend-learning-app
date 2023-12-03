@@ -1,8 +1,7 @@
 // pages/chat.js
 import { useEffect, useRef, useState } from "react";
 import { FiSend } from "react-icons/fi";
-import { io } from "socket.io-client";
-import { useRouter } from "next/router";
+import io from "socket.io-client";
 import Sidebar from "@/components/conversation/Sidebar";
 import Bubble from "@/components/conversation/Bubble";
 import { useGetConversationsQuery } from "@/redux/features/payment/paymentApi";
@@ -15,6 +14,7 @@ const Chat = () => {
   const [newMessage, setNewMessage] = useState("");
   const [currentConversation, setCurrentConversation] = useState(null);
   const [chats, setChats] = useState([]);
+  const scrollRef = useRef();
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -46,7 +46,16 @@ const Chat = () => {
         setChats((prev) => [...prev, message]);
       });
     }
+
+    socket.on("getUsers", (users) => {
+      console.log("Users: ", users);
+    });
   }, [socket]);
+
+  // scroll ref
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chats, handleSendMessage]);
 
   // Add new user to socket.io
   useEffect(() => {
@@ -54,17 +63,12 @@ const Chat = () => {
       if (User) {
         socket.emit("addUser", User?._id);
       }
-      socket.on("getUsers", (users) => {
-        console.log("Users: ", users);
-      });
     }
-  }, [socket, User]);
+  }, [User]);
 
   useEffect(() => {
     setSocket(io("http://localhost:8000"));
   }, []);
-
-  console.log("Chats:", chats);
 
   return (
     <div className="flex h-screen">
@@ -78,11 +82,9 @@ const Chat = () => {
           <div className="overflow-y-auto h-[calc(100vh-200px)] bg-white p-8 shadow-md">
             {chats.length > 0 &&
               chats.map((chat, index) => (
-                <Bubble
-                  key={index}
-                  own={chat.sender === User?.name}
-                  chat={chat}
-                />
+                <div ref={scrollRef} key={index}>
+                  <Bubble own={chat.sender === User?.name} chat={chat} />
+                </div>
               ))}
           </div>
 
