@@ -10,7 +10,6 @@ const Search = () => {
           placeholder="Search"
           className="w-full py-3 focus:outline-none px-5 border-r"
         />
-        {/* No chnages */}
         <button className="px-5">
           <AiOutlineSearch />
         </button>
