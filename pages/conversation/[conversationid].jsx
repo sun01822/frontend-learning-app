@@ -10,11 +10,12 @@ import { useSelector } from "react-redux";
 const Chat = () => {
   const { User } = useSelector((state) => state.user);
   const { data: conversations } = useGetConversationsQuery(User?._id);
-  const [socket, setSocket] = useState(null);
+  // const [socket, setSocket] = useState(null);
   const [newMessage, setNewMessage] = useState("");
   const [currentConversation, setCurrentConversation] = useState(null);
   const [chats, setChats] = useState([]);
   const scrollRef = useRef();
+  const socket = io("http://localhost:8000");
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -45,17 +46,19 @@ const Chat = () => {
         console.log("Message: ", message);
         setChats((prev) => [...prev, message]);
       });
-    }
 
-    socket.on("getUsers", (users) => {
-      console.log("Users: ", users);
-    });
+      socket.on("getUsers", (users) => {
+        console.log("Users: ", users);
+      });
+    } else {
+      console.log("NO socket found!");
+    }
   }, [socket]);
 
-  // scroll ref
-  useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [chats, handleSendMessage]);
+  // // scroll ref
+  // useEffect(() => {
+  //   scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  // }, [chats, handleSendMessage]);
 
   // Add new user to socket.io
   useEffect(() => {
@@ -66,9 +69,9 @@ const Chat = () => {
     }
   }, [User]);
 
-  useEffect(() => {
-    setSocket(io("http://localhost:8000"));
-  }, []);
+  // useEffect(() => {
+  //   setSocket(io("http://localhost:8000"));
+  // }, []);
 
   return (
     <div className="flex h-screen">
