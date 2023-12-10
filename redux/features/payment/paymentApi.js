@@ -31,10 +31,18 @@ export const paymentApi = apiSlice.injectEndpoints({
         method: "DELETE",
       }),
     }),
+    // get conversations
+    getConversations: builder.query({
+      query: (user_id) => ({
+        url: `/payment/conversations/${user_id}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
 export const {
+  useGetConversationsQuery,
   useCreatePaymentMutation,
   useSuccessPaymentMutation,
   useCancelPaymentMutation,
