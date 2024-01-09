@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 
 export default function Layout({ children }) {
   const route = useRouter();
-  console.log("Router: ", route.pathname);
   return (
     <div>
       {route.pathname.includes("login") ||
