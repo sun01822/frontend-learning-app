@@ -1,0 +1,83 @@
+// Subcategory.jsx
+
+import React, { useState, useEffect } from 'react';
+import {
+  useGetAllsubCategoriesQuery,
+} from '@/redux/features/subcategory/subcategoryApi';
+import {
+  useGetAllCategoriesQuery,
+} from '@/redux/features/category/categoryApi';
+
+const Subcategory = () => {
+  const { data: subcategories, error: subcategoriesError, isLoading: isLoadingSubcategories } = useGetAllsubCategoriesQuery();
+  const { data: categories, error: categoriesError, refetch: refetchCategories } = useGetAllCategoriesQuery();
+
+  const [selectedCategoryId, setSelectedCategoryId] = useState('');
+
+  useEffect(() => {
+    // Fetch the list of categories on component mount
+    refetchCategories();
+  }, [refetchCategories]);
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategoryId(event.target.value);
+  };
+
+  const filteredSubcategories = selectedCategoryId
+    ? subcategories?.filter((subcategory) => subcategory.categoryId === selectedCategoryId)
+    : subcategories;
+
+  return (
+    <div className="container mx-auto p-8">
+      <h2 className="text-2xl font-bold mb-4">All Subcategories</h2>
+
+      {/* Category Filter Dropdown */}
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700">Filter by Category:</label>
+        <select
+          className="mt-1 p-2 border rounded-md"
+          value={selectedCategoryId}
+          onChange={handleCategoryChange}
+        >
+          <option value="">All Categories</option>
+          {categories &&
+            categories.map((category) => (
+              <option key={category._id} value={category._id}>
+                {category.category_name}
+              </option>
+            ))}
+        </select>
+      </div>
+
+      {isLoadingSubcategories ? (
+        <p>Loading subcategories...</p>
+      ) : subcategoriesError ? (
+        <p>Error: {subcategoriesError.message}</p>
+      ) : (
+        <table className="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr>
+              <th className="py-2 px-4 border-b">ID</th>
+              <th className="py-2 px-4 border-b">Subcategory Name</th>
+              <th className="py-2 px-4 border-b">Category ID</th>
+              {/* Add more headers based on your subcategory data */}
+            </tr>
+          </thead>
+          <tbody>
+            {filteredSubcategories &&
+              filteredSubcategories.map((subcategory) => (
+                <tr key={subcategory._id} className="hover:bg-gray-100">
+                  <td className="py-2 px-4 border-b">{subcategory._id}</td>
+                  <td className="py-2 px-4 border-b">{subcategory.name}</td>
+                  <td className="py-2 px-4 border-b">{subcategory.categoryId}</td>
+                  {/* Add more cells for additional subcategory information */}
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+};
+
+export default Subcategory;
