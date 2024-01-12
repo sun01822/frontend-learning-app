@@ -1,6 +1,7 @@
 // pages/chat.js
 import { useEffect, useRef, useState } from "react";
 import { FiSend } from "react-icons/fi";
+import { FaVideo } from "react-icons/fa";
 import io from "socket.io-client";
 import Sidebar from "@/components/conversation/Sidebar";
 import Bubble from "@/components/conversation/Bubble";
@@ -10,6 +11,7 @@ import {
   useGetConvMessagesQuery,
   useSendMessageMutation,
 } from "@/redux/features/chat/chatApi";
+import Link from "next/link";
 
 const Chat = () => {
   const { User } = useSelector((state) => state.user);
@@ -127,6 +129,13 @@ const Chat = () => {
             >
               +
             </label>
+            <Link
+              className="px-3 hover:scale-110 duration-100"
+              href="http://localhost:3001/video-call/2349u0223s"
+              target="_blank"
+            >
+              <FaVideo />
+            </Link>
             <input
               style={{ display: "none" }}
               type="file"
