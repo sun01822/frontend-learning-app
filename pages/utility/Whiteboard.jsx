@@ -18,7 +18,6 @@ import { BiRectangle, BiUndo } from "react-icons/bi";
 import { BsTriangle } from "react-icons/bs";
 import { FaEraser } from "react-icons/fa";
 import { GiMoebiusTriangle, GiStraightPipe, GiClick } from "react-icons/gi";
-import Logo from "../../public/images/logo.svg";
 import { useRouter } from "next/router";
 import TopLogo from "next/image";
 
@@ -245,14 +244,6 @@ const Whiteboard = () => {
 
   return (
     <div className="bg-white w-full h-screen overflow-hidden">
-      <div className="w-[150px] absolute bg-white z-50 rounded-lg">
-        <TopLogo
-          onClick={() => router.back()}
-          className="w-[150px] p-4 drop-shadow cursor-pointer"
-          src={Logo}
-          alt="Logo"
-        />
-      </div>
       <Stage
         width={canvasSize.width}
         height={canvasSize.height}

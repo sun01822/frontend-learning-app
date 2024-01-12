@@ -30,7 +30,7 @@ const Navbar = () => {
   const isLoggedIn = false;
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-white border-b">
       {/* main */}
       <div className="max-w-[1100px] px-4 mx-auto py-2 flex items-center justify-between">
         {/* Logo */}
