@@ -43,17 +43,23 @@ const Bubble = ({ chat, own }) => {
           <div className="chat chat-end flex flex-col">
             <div className="text-xs pb-1">
               <span className="font-semibold">{chat?.sender}</span>
-              <span className="text-gray-400 pl-2">{format(chat?.time)}</span>
+              <span className="text-gray-400 pl-2">
+                {format(chat?.createdAt)}
+              </span>
             </div>
-            <div className="chat-bubble bg-sky-500">{chat?.text}</div>
+            <div className="chat-bubble bg-sky-500">{chat?.message}</div>
           </div>
         ) : (
           <div className="chat chat-start flex flex-col">
             <div className="text-xs pb-1">
               <span className="font-semibold">{chat?.sender}</span>
-              <span className="text-gray-400 pl-2">{format(chat?.time)}</span>
+              <span className="text-gray-400 pl-2">
+                {format(chat?.createdAt)}
+              </span>
             </div>
-            <div className="chat-bubble chat-bubble-primary">{chat?.text}</div>
+            <div className="chat-bubble chat-bubble-primary">
+              {chat?.message}
+            </div>
           </div>
         )}
       </div>

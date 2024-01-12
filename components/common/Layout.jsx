@@ -12,12 +12,13 @@ export default function Layout({ children }) {
       ) : (
         <Navbar />
       )}
-      <div className="max-w-[1100px] min-h-screen mx-auto px-4">
+      <div className="max-w-[1100px] mx-auto px-4">
         <main>{children}</main>
       </div>
 
       {route.pathname.includes("login") ||
-      route.pathname.includes("registration") ? (
+      route.pathname.includes("registration") ||
+      route.pathname.includes("conversation") ? (
         ""
       ) : (
         <div className="w-full bg-white mt-10">
