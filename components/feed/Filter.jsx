@@ -1,18 +1,15 @@
 import { useState } from "react";
 import { MdOutlineExpandLess, MdOutlineExpandMore } from "react-icons/md";
 import { useGetAllCategoriesQuery } from "@/redux/features/category/categoryApi";
-import { useSelector } from "react-redux";
 import { useGetAllProblemsQuery } from "@/redux/features/problems/problemApi";
 
 const Filter = () => {
   const [isExpend, setIsExpend] = useState(false);
   const [query, setQuery] = useState("");
   const { data: categories } = useGetAllCategoriesQuery(null);
-  const { data: FilteredProblem } = useGetAllProblemsQuery(query, {
+  const {} = useGetAllProblemsQuery(query, {
     refetchOnMountOrArgChange: true,
   });
-
-  console.log("FilteredProblem", FilteredProblem);
 
   const handleSubmit = (e) => {
     e.preventDefault();
