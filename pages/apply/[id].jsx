@@ -96,53 +96,60 @@ const Apply = () => {
         <p className="text-sm font-semibold pt-2 pb-2 text-gray-400">
           Description
         </p>
-        <p className="">{problem?.description}</p>
 
-        <br />
-        <hr />
-        <br />
+        {problem?.isPaid ? (
+          ""
+        ) : (
+          <>
+            <p className="">{problem?.description}</p>
 
-        <form onSubmit={handleApplyJob}>
-          <h3 className="font-semibold mb-2">
-            Write Description <span>(21/2000)</span>
-          </h3>
-          <textarea
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-            placeholder="About your experience"
-            className="textarea textarea-sm  rounded-lg w-full bg-base-200 focus:outline-none"
-          ></textarea>
-          <h3 className="font-semibold mb-2 mt-4">
-            Price <span>(Max 150tk)</span>
-          </h3>
-          <input
-            type="number"
-            onChange={(e) => setPrice(e.target.value)}
-            value={price}
-            placeholder="tk"
-            className="bg-base-200 focus:outline-none rounded-md py-2 px-3"
-          />
-          <div className="mt-10">
-            <div className="flex items-center gap-4">
-              <button
-                type="submit"
-                className="btn btn-sm gap-2 btn_sar text-white rounded-full px-3"
-              >
-                Apply Job <AiOutlineSend />
-              </button>
+            <br />
+            <hr />
+            <br />
 
-              <Link href="/feed">
-                <button className="btn btn-sm gap-2 bg-gray-700 hover:bg-gray-800 text-white rounded-full px-3">
-                  Cancel
-                </button>
-              </Link>
-            </div>
-          </div>
-        </form>
+            <form onSubmit={handleApplyJob}>
+              <h3 className="font-semibold mb-2">
+                Write Description <span>(21/2000)</span>
+              </h3>
+              <textarea
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
+                placeholder="About your experience"
+                className="textarea textarea-sm  rounded-lg w-full bg-base-200 focus:outline-none"
+              ></textarea>
+              <h3 className="font-semibold mb-2 mt-4">
+                Price <span>(Max 150tk)</span>
+              </h3>
+              <input
+                type="number"
+                onChange={(e) => setPrice(e.target.value)}
+                value={price}
+                placeholder="tk"
+                className="bg-base-200 focus:outline-none rounded-md py-2 px-3"
+              />
+              <div className="mt-10">
+                <div className="flex items-center gap-4">
+                  <button
+                    type="submit"
+                    className="btn btn-sm gap-2 btn_sar text-white rounded-full px-3"
+                  >
+                    Apply Job <AiOutlineSend />
+                  </button>
+
+                  <Link href="/feed">
+                    <button className="btn btn-sm gap-2 bg-gray-700 hover:bg-gray-800 text-white rounded-full px-3">
+                      Cancel
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </form>
+          </>
+        )}
       </div>
       {/* Proposal call */}
       <div className="bg-white rounded-md p-5 mt-3">
-        <Proposal id={id} learner={problem?.user} />
+        <Proposal id={id} isPaid={problem?.isPaid} learner={problem?.user} />
       </div>
     </>
   );

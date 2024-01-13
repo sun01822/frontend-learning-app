@@ -2,10 +2,17 @@ import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { useGetAllProblemsByUserIdQuery, useDeleteProblemMutation } from "@/redux/features/problems/problemApi";
+import {
+  useGetAllProblemsByUserIdQuery,
+  useDeleteProblemMutation,
+} from "@/redux/features/problems/problemApi";
 
-const ProblemPosts = ({userId}) => {
-  const { data: problems, isLoading, isError } = useGetAllProblemsByUserIdQuery(userId);
+const ProblemPosts = ({ userId }) => {
+  const {
+    data: problems,
+    isLoading,
+    isError,
+  } = useGetAllProblemsByUserIdQuery(userId);
   const [deleteProblemMutation] = useDeleteProblemMutation(); // Initialize the delete mutation
 
   // const handleDelete = async (problemId) => {
@@ -35,16 +42,21 @@ const ProblemPosts = ({userId}) => {
     <div className="mt-2 p-4 lg:p-10 rounded-lg bg-white">
       <div className="flex justify-between pb-4">
         <h3 className="text-xl font-semibold">Posted Problems</h3>
-        <Link href="/post/125">
+        <Link href="/post/upload">
           <button className="btn btn_sar btn-sm">New Problems</button>
         </Link>
       </div>
       <div>
         {problems.map((problem) => (
-          <div key={problem._id} className="flex flex-wrap gap-4 justify-between items-center mt-3 border-t pt-3">
+          <div
+            key={problem._id}
+            className="flex flex-wrap gap-4 justify-between items-center mt-3 border-t pt-3"
+          >
             <div>
               <Link href={`/apply/${problem._id}`}>
-                <h2 className="font-semibold hover:text-primary">{problem.title}</h2>
+                <h2 className="font-semibold hover:text-primary">
+                  {problem.title}
+                </h2>
               </Link>
               {/* <p>{`Description: ${problem.description}`}</p>
             <p>{`Budget: ${problem.budget}`}</p> */}
@@ -61,7 +73,6 @@ const ProblemPosts = ({userId}) => {
           </button> */}
           </div>
         ))}
-       
       </div>
     </div>
   );

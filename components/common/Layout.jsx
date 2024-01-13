@@ -24,7 +24,7 @@ export default function Layout({ children }) {
 
       {route.pathname.includes("login") ||
       route.pathname.includes("registration") ||
-      route.pathname.includes("registration") ||
+      route.pathname.includes("conversation") ||
       route.pathname.includes("Whiteboard") ? (
         ""
       ) : (

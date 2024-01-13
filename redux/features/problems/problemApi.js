@@ -1,12 +1,21 @@
 import { apiSlice } from "../api/apiSlice";
+import { setProblems } from "./problemSlice";
 
 export const problemApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     // get all problems
     getAllProblems: builder.query({
-      query: () => ({
-        url: `/problem`,
+      query: (query) => ({
+        url: `/problem?${query}`,
       }),
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        try {
+          const result = await queryFulfilled;
+          dispatch(setProblems(result.data));
+        } catch (error) {
+          console.log(error);
+        }
+      },
       providesTags: ["Problems"],
     }),
 
@@ -18,8 +27,8 @@ export const problemApi = apiSlice.injectEndpoints({
     // create a new problem
     createProblem: builder.mutation({
       query: (newProblem) => ({
-        url: '/problem',
-        method: 'POST',
+        url: "/problem",
+        method: "POST",
         body: newProblem,
       }),
       invalidatesTags: ["Problems"],
@@ -28,15 +37,15 @@ export const problemApi = apiSlice.injectEndpoints({
     // get all problems by user ID
     getAllProblemsByUserId: builder.query({
       query: (userId) => ({
-        url: `/problem/user/${userId}`, 
+        url: `/problem/user/${userId}`,
       }),
     }),
 
     // delete a problem by id
-     deleteProblem: builder.mutation({
+    deleteProblem: builder.mutation({
       query: (problemId) => ({
         url: `/problem/${problemId}`,
-        method: 'DELETE',
+        method: "DELETE",
       }),
       invalidatesTags: ["Problems"],
     }),
