@@ -25,18 +25,18 @@ const Search = () => {
       <h2 className="text-xl font-semibold">Browse</h2>
       <form
         onSubmit={handleSeach}
-        className="border rounded-full lg:min-w-[500px] max-w-[400px] flex items-center justify-between overflow-hidden"
+        className="border border-gray-400 rounded-full lg:min-w-[500px] max-w-[400px] flex items-center justify-between overflow-hidden hover:shadow-lg"
       >
         <input
           type="text"
           placeholder="Search"
-          className="w-full py-3 focus:outline-none px-5 border-r"
+          className="w-full py-3 focus:outline-none px-5 border-r border-gray-400"
         />
-        <button type="submit" className="px-5">
+        <button type="submit" className="px-5 text-lg">
           <AiOutlineSearch />
         </button>
       </form>
-      <button className="btn btn_sar" onClick={() => setQuery("")}>
+      <button className="btn btn_sar capitalize" onClick={() => setQuery("")}>
         <IoMdRefresh /> &nbsp; Clear
       </button>
     </div>

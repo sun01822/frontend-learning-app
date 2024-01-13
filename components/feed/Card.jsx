@@ -5,12 +5,10 @@ import moment from "moment";
 
 // Functional component Card
 const Card = ({ problem }) => {
-  const Topics = ["Programming", "Javascript", "Website"];
-
   return (
-    <div className="bg-white border-b py-6 px-5">
+    <div className="border mb-2 py-4 rounded-lg px-5 hover:scale-[1.02] hover:shadow-lg duration-150">
       {/* Header */}
-      <div className="flex flex-wrap gap-2 justify-between">
+      <div className="flex items-center flex-wrap gap-2 justify-between">
         <div className="flex items-center gap-2">
           <Link href="/profile/rakib38">
             <img
@@ -27,7 +25,7 @@ const Card = ({ problem }) => {
                 </p>
               </Link>
             </div>
-            <p className="text-sm">
+            <p className="text-sm text-gray-400">
               {moment(problem?.createdAt).startOf("hour").fromNow()}
             </p>
           </div>
@@ -38,27 +36,20 @@ const Card = ({ problem }) => {
       </div>
       {/* Problem */}
       <Link href={`/apply/${problem?._id}`}>
-        <h2 className="text-xl font-semibold mt-3">{problem?.title}</h2>
+        <h2 className="text-xl hover:text-sky-500 duration-200 font-semibold mt-3">
+          {problem?.title}
+        </h2>
       </Link>
 
       <div className="mt-4">
         <div className="flex items-center gap-4">
           <Link href={`/apply/${problem?._id}`}>
-            <button className="btn btn-xs gap-2 btn_sar text-white rounded-full px-3">
+            <button className="btn btn-xs gap-2 btn_sar text-white rounded-full px-3 capitalize">
               Details <AiOutlineSend />
             </button>
           </Link>
-          {/* <p className="flex gap-2 text-primary items-center">
-            <AiOutlineStar /> Interested
-            <span className="font-semibold">9</span>
-          </p> */}
+          <p className="text-sm">#{problem?.category}</p>
         </div>
-      </div>
-
-      <div className="flex flex-wrap text-sm gap-3 mt-3 text-gray-400">
-        {Topics.map((data, index) => (
-          <p key={index}>#{data}</p>
-        ))}
       </div>
     </div>
   );

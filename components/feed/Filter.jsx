@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MdOutlineExpandLess, MdOutlineExpandMore } from "react-icons/md";
 import { useGetAllCategoriesQuery } from "@/redux/features/category/categoryApi";
 import { useGetAllProblemsQuery } from "@/redux/features/problems/problemApi";
+import { IoFilterSharp } from "react-icons/io5";
 
 const Filter = () => {
   const [isExpend, setIsExpend] = useState(false);
@@ -55,8 +56,8 @@ const Filter = () => {
               placeholder="To"
             />
           </div>
-          <button className="btn btn-sm px-4 text-white rounded-md">
-            Filter
+          <button className="btn btn-sm p2-4 capitalize text-white rounded-md">
+            <IoFilterSharp /> &nbsp; Filter
           </button>
         </form>
         <h3 className="font-semibold text-sm uppercase text-gray-400 mt-6 mb-2">
