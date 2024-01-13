@@ -8,6 +8,7 @@ import { BsClipboard } from "react-icons/bs";
 import { BiMessageRounded } from "react-icons/bi";
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import { useGetTotalAmountForTutorQuery } from "@/redux/features/payment/paymentApi";
 
 import {
   AiOutlinePlus,
@@ -26,6 +27,8 @@ import { SignOutButton } from "@clerk/nextjs";
 
 const Navbar = () => {
   const { User } = useSelector((state) => state.user);
+    const { data: totalEarning, error, isLoading } = useGetTotalAmountForTutorQuery(User?._id);
+
   const { isSignedIn, user } = useUser();
   const isLoggedIn = false;
 
@@ -64,7 +67,7 @@ const Navbar = () => {
                   <label tabIndex={0} className="m-1 flex gap-2 items-center">
                     <div>
                       <span className="font-semibold">{User?.name}</span>
-                      <p className="text-sm">৳ 1K BDT</p>
+                      <p className="text-sm">৳ {isLoading ? "Loading..." : totalEarning?.totalAmount || "0" }</p>
                     </div>
                     <img
                       className="w-[45px] rounded-full"
