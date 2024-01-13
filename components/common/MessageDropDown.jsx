@@ -1,51 +1,14 @@
 import React from "react";
 import { AiOutlineMessage } from "react-icons/ai";
+import { useGetConversationsQuery } from "@/redux/features/payment/paymentApi";
+import { useSelector } from "react-redux";
+import Link from "next/link";
 
 const MessageDropDown = () => {
-  const messages = [
-    {
-      id: 1,
-      senderImage:
-        "https://assets.entrepreneur.com/content/3x2/2000/20200323171735-GettyImages-1066557788.jpeg",
-      senderMessage: "Lorem ipsum dolor sit amet, consectetur",
-      sendingTime: "10:00 AM",
-    },
-    {
-      id: 2,
-      senderImage:
-        "https://www.wgu.edu/content/dam/web-sites/blog-newsroom/blog/images/national/2020/march/6-ways-to-improve-online-teaching.jpg",
-      senderMessage: "Lorem ipsum dolor",
-      sendingTime: "10:00 AM",
-    },
-    {
-      id: 3,
-      senderImage:
-        "https://assets.entrepreneur.com/content/3x2/2000/20200323171735-GettyImages-1066557788.jpeg",
-      senderMessage: "Hey, how are you?",
-      sendingTime: "10:00 AM",
-    },
-    {
-      id: 4,
-      senderImage:
-        "https://www.wgu.edu/content/dam/web-sites/blog-newsroom/blog/images/national/2020/march/6-ways-to-improve-online-teaching.jpg",
-      senderMessage: "I have a question for you.",
-      sendingTime: "2:30 PM",
-    },
-    {
-      id: 5,
-      senderImage:
-        "https://www.wgu.edu/content/dam/web-sites/blog-newsroom/blog/images/national/2020/march/6-ways-to-improve-online-teaching.jpg",
-      senderMessage: "Lorem ipsum dolor",
-      sendingTime: "10:00 AM",
-    },
-    {
-      id: 6,
-      senderImage:
-        "https://assets.entrepreneur.com/content/3x2/2000/20200323171735-GettyImages-1066557788.jpeg",
-      senderMessage: "Hey, how are you?",
-      sendingTime: "10:00 AM",
-    },
-  ];
+  const { User } = useSelector((state) => state.user);
+  const { data: conversations } = useGetConversationsQuery(User?._id, {
+    refetchOnMountOrArgChange: true,
+  });
 
   return (
     <>
@@ -56,33 +19,44 @@ const MessageDropDown = () => {
               <AiOutlineMessage />
             </span>
             <span className="badge rounded-full badge-error -mt-6 text-white font-bold">
-              0
+              {conversations?.length}
             </span>
           </p>
         </label>
         <div
           tabIndex={0}
-          className="dropdown-content z-[1] w-96 h-96 bg-white rounded-box shadow overflow-y-auto"
+          className="dropdown-content z-[1] w-96 bg-white rounded-md shadow-lg border border-gray-300"
         >
-          {messages.map((message) => (
-            <a href="/profile/rakib38" key={message.id}>
-              <div key={message.id} className="p-4 border-b hover:bg-gray-100">
-                <div className="flex items-center">
-                  <img
-                    src={message.senderImage}
-                    alt="Sender Image"
-                    className="w-12 h-12 rounded-full mr-4"
-                  />
-                  <div>
-                    <p className="font-bold">{message.senderMessage}</p>
-                    <p className="text-gray-600 text-sm">
-                      {message.sendingTime}
-                    </p>
+          <div className="p-3 flex justify-between border-b">
+            <h2 className="text-lg font-semibold">Conversations</h2>
+            <Link href="/conversations/38">
+              <span className="text-blue-500">See Messages</span>
+            </Link>
+          </div>
+          <ul className="h-72 overflow-y-auto">
+            {conversations?.map((user, index) => (
+              <li
+                key={index}
+                className="flex items-center border-b p-2 hover:bg-gray-100 relative"
+              >
+                <img
+                  src="/images/avatar.jpg"
+                  className="w-10 h-10 object-cover rounded-full mr-2"
+                />
+                <div>
+                  <div className="font-semibold text-sm">
+                    {user.student_id.name}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    {user.tutor_id.name}
                   </div>
                 </div>
-              </div>
-            </a>
-          ))}
+                {user.isActive && (
+                  <div className="absolute w-2 h-2 bg-green-500 rounded-full right-2 top-1" />
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </>
