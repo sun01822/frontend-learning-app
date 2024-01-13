@@ -130,8 +130,8 @@ const Chat = () => {
               +
             </label>
             <Link
-              className="px-3 hover:scale-110 duration-100"
-              href="http://localhost:3001/video-call/2349u0223s"
+              className="px-3 hover:scale-110 duration-100 text-xl"
+              href="http://localhost:3001/room/SAR-237234jk9234je89sdjk"
               target="_blank"
             >
               <FaVideo />

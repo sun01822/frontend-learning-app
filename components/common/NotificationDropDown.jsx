@@ -50,7 +50,7 @@ const NotificationDropDown = () => {
               <AiOutlineBell />
             </span>
             <span className="badge rounded-full badge-error -mt-6 text-white font-bold">
-              9
+              0
             </span>
           </p>
         </label>

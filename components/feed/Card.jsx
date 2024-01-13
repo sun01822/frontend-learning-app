@@ -8,7 +8,7 @@ const Card = ({ problem }) => {
   const Topics = ["Programming", "Javascript", "Website"];
 
   return (
-    <div className="bg-white border-b py-6 px-5 rounded-lg">
+    <div className="bg-white border-b py-6 px-5">
       {/* Header */}
       <div className="flex flex-wrap gap-2 justify-between">
         <div className="flex items-center gap-2">

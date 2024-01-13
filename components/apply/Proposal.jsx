@@ -5,7 +5,7 @@ import { useCreatePaymentMutation } from "@/redux/features/payment/paymentApi";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
-const Proposal = ({ id, learner }) => {
+const Proposal = ({ id, learner, isPaid }) => {
   const { User } = useSelector((state) => state.user);
   const { data: comments, isError } = useGetAllCommentsOnPostQuery(
     { postId: id },
@@ -96,7 +96,7 @@ const Proposal = ({ id, learner }) => {
                       <span className="text-lg font-semibold text-green-500">
                         {comment.price} tk
                       </span>
-                      {learner?._id === User?._id && (
+                      {!isPaid && learner?._id === User?._id && (
                         <button
                           className="btn btn_sm bg-blue-500 ml-4 rounded-full text-white"
                           onClick={() =>

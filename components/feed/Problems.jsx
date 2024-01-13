@@ -7,9 +7,9 @@ const Problems = ({ problems }) => {
       <h3 className="font-semibold text-xl pb-2 pl-4 border-b">Results</h3>
       <div>
         {problems &&
-          problems.map((problem) => (
-            <Card key={problem._id} problem={problem} />
-          ))}
+          problems.map((problem) =>
+            problem.isPaid ? "  " : <Card key={problem._id} problem={problem} />
+          )}
       </div>
     </div>
   );

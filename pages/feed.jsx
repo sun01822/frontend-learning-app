@@ -3,8 +3,12 @@ import Problems from "@/components/feed/Problems";
 import Search from "@/components/feed/Search";
 import React from "react";
 import { useGetAllProblemsQuery } from "@/redux/features/problems/problemApi";
+import { useSelector } from "react-redux";
+
 const Feed = () => {
   const { data, error } = useGetAllProblemsQuery(null);
+
+  const { Problems: filteredProblems } = useSelector((state) => state.problems);
 
   if (error) console.log("Login: ", error);
 
@@ -16,7 +20,7 @@ const Feed = () => {
           <Filter />
         </div>
         <div className="col-span-12 md:col-span-8">
-          {data && <Problems problems={data.data} />}
+          {data && <Problems problems={filteredProblems.data || data.data} />}
         </div>
       </div>
     </div>

@@ -56,7 +56,7 @@ const MessageDropDown = () => {
               <AiOutlineMessage />
             </span>
             <span className="badge rounded-full badge-error -mt-6 text-white font-bold">
-              6
+              0
             </span>
           </p>
         </label>

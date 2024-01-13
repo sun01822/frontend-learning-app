@@ -4,6 +4,7 @@ import NotificationDropDown from "./NotificationDropDown";
 import MessageDropDown from "./MessageDropDown";
 import Logo from "../../public/images/logo.svg";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { MdOutlineUpload, MdOutlineDashboard } from "react-icons/md";
 import { BsClipboard } from "react-icons/bs";
 import { BiMessageRounded } from "react-icons/bi";
 import Link from "next/link";
@@ -52,10 +53,12 @@ const Navbar = () => {
             )
           }
           {/* icons */}
-          <div className="hidden md:flex justify-between md:mr-10 lg:mr-0">
-            <NotificationDropDown />
-            <MessageDropDown />
-          </div>
+          {User && (
+            <div className="hidden md:flex justify-between md:mr-10 lg:mr-0">
+              {/* <NotificationDropDown /> */}
+              <MessageDropDown />
+            </div>
+          )}
           {/* user */}
           <div className="flex gap-3 items-center">
             <div className="text-right">
@@ -82,6 +85,11 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
+                      <Link href="/post/upload" className="gap-2">
+                        <MdOutlineUpload /> Upload Problem
+                      </Link>
+                    </li>
+                    <li>
                       <Link href="/conversation/38" className="gap-2">
                         <BiMessageRounded /> Messages
                       </Link>
@@ -89,6 +97,11 @@ const Navbar = () => {
                     <li>
                       <Link href="/utility/Whiteboard" className="gap-2">
                         <BsClipboard /> Whiteboard
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/Admin/Sidebar" className="gap-2">
+                        <MdOutlineDashboard /> Dashboard
                       </Link>
                     </li>
                     <li>
