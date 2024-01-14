@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { AiFillEdit } from "react-icons/ai";
 import { useSelector } from "react-redux";
+import { useGetTotalAmountForTutorQuery } from "@/redux/features/payment/paymentApi";
 
 const Banner = () => {
   const { User } = useSelector((state) => state.user);
+  const { data: totalEarning, error, isLoading } = useGetTotalAmountForTutorQuery(User?._id);
+
   return (
     <div className="flex flex-wrap gap-3 items-center justify-between bg-white mt-2 p-4 lg:p-10 rounded-lg">
       <div className="flex gap-3">
@@ -30,7 +33,7 @@ const Banner = () => {
       <div className="min-w-[300px] bg-base-300 p-4 rounded-lg">
         <div className="flex justify-between border-b border-gray-400 pb-3">
           <p className="font-semibold">Total Earning</p>
-          <p className="font-bold">110K tk</p>
+          <p className="font-bold"> {isLoading ? "Loading..." : totalEarning?.totalAmount || "0"}</p>
         </div>
         <div className="flex justify-between pt-3">
           <p className="font-semibold">Level</p>
