@@ -38,6 +38,13 @@ export const paymentApi = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    // get total amount for tutor
+    getTotalAmountForTutor: builder.query({
+      query: (tutor_id) => ({
+        url: `/payment/total-amount-tutor/${tutor_id}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -47,4 +54,5 @@ export const {
   useSuccessPaymentMutation,
   useCancelPaymentMutation,
   useFailPaymentMutation,
+  useGetTotalAmountForTutorQuery, 
 } = paymentApi;
